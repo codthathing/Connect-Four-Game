@@ -1,0 +1,654 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: #F0EDD4;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#body.removePad {
+    padding: 0;
+}
+
+header {
+    width: 100%; 
+}
+
+#links {
+    display: flex;
+    justify-content: space-between;
+}
+
+#links p {
+    transition: all 200ms linear;
+    font-weight: bold;
+    color: #19A7CE;
+}
+
+#links p:hover {
+    color: black;
+    background-color: #19A7CE;
+    box-shadow: 0 0 5px #19A7CE, 0 0 15px #19A7CE, 0 0 30px #19A7CE,0 0 150px #19A7CE;
+}
+
+#section1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#intro-div {
+    width: 60%;
+}
+
+#profile-div {
+    width: 40%;
+}
+
+#intro {
+    font-style: italic;
+}
+
+#front-end {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #19A7CE;
+}
+
+#email-btn {
+    background-color: transparent;
+    border: 2px solid #19A7CE;
+    color: #F0EDD4;
+    transition: all 200ms linear;
+}
+
+#email-btn:hover {
+    background-color: #19A7CE;
+    border: 2px solid #19A7CE;
+    box-shadow: 0 0 5px #19A7CE, 0 0 15px #19A7CE, 0 0 30px #19A7CE,0 0 150px #19A7CE;
+    color: black;
+}
+
+.secHeaders {
+    color: #19A7CE;
+}
+
+#dev-img {
+    float: right;
+}
+
+#grid {
+    display: grid;
+    justify-content: center;
+}
+
+#serDiv {
+    margin: 0.3rem;
+    display: grid;
+}
+
+#serImg {
+    justify-self: center;
+}
+
+#serName {
+    color: #F0EDD4;
+}
+
+#serBottom {
+    display: flex;
+}
+
+#serLink {
+    color: #19A7CE;
+    align-self: flex-end;
+    justify-self: flex-end;
+    text-decoration: none;
+}
+
+.socDiv {
+    margin: 0.5rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid #19A7CE;
+    border-radius: 0.2rem;
+    padding-right: 1rem;
+    width: fit-content;
+}
+
+.socImg {
+    border-radius: 50%;
+}
+
+.socName {
+    color: #F0EDD4;
+}
+
+.nav-item {
+    background-color: black;
+    color: #F0EDD4;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    display: none;
+    opacity: 0;
+} 
+
+#resDiv.openRes {
+    display: block;
+    opacity: 1;
+    overflow-y: scroll;
+}
+
+.back-btn {
+    background-color: transparent;
+    border: none;
+    color: #F0EDD4;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-weight: bold;
+    margin: 1rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.resPara {
+    text-transform: uppercase;  
+    font-weight: bold;
+    color: #19A7CE;
+}
+
+#resPara1 {
+    color: #F0EDD4;
+}
+
+.resParas {
+    margin: 0.5rem 0;
+}
+
+#resSec1 {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.sePara { 
+    font-weight: bold;
+}
+/* 
+.jobDiv {
+    display: grid;  
+    margin-top: 0.5rem; 
+    margin-left: 20%;
+} */
+
+.sePara1 {
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.seLink {
+    color: white;
+    text-align: center;
+}
+
+.perMain {
+    display: grid; 
+    grid-template-columns: 1fr 1fr;  
+    justify-content: space-between;
+    width: 90%;
+}
+
+#pro_div.openPro {
+    display: block;
+    opacity: 1;
+    animation: appearance 500ms linear;
+    overflow-y: scroll;
+} 
+
+#projectDiv {
+    display: grid;
+}
+
+#openText {
+    background-color: black;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    display: flex;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+#openText span {
+    letter-spacing: 1.5px;
+}
+
+#openText.closeText {
+    display: none;
+    opacity: 0;
+}
+
+#container {
+    position: absolute;
+}
+
+.underscore {
+    display: inline-block;
+    position: relative;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+
+
+
+@media all and (max-width: 767px) {
+
+    #body {
+        padding: 0.5rem;
+    }
+
+    #links p {
+        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    }
+
+    #links p:hover {
+        border-radius: 0.2rem;
+        letter-spacing: 0.5px;
+    }
+
+    #section1 {
+        margin: 3rem 0.5rem;
+    }
+
+    #intro {
+        margin-right: 1rem;
+    }
+    
+    #profile-pic {
+        width: 100%;
+        height: 10rem;
+    }
+
+    #email-btn {
+        border-radius: 0.2rem;
+        font-size: 1rem;
+        margin-top: 1rem;
+        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    }
+
+    #email-btn:hover {
+        letter-spacing: 0.5px;
+    }
+
+    .sections {
+        margin: 3rem 0;
+    }
+
+    .secHeaders {
+        margin-bottom: 0.5rem;
+    }
+
+    #dev-img {
+        width: 10rem;
+    }
+    
+    #grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #serImg {
+        width: 100%;
+    }
+
+    #serName {
+        font-size: 1rem;
+    }
+
+    .socImg {
+        width: 3rem;
+    }
+
+    .back-btn {
+        font-size: 1rem;
+    }
+  
+    #resumeDiv {
+        padding: 0.5rem;
+    }
+
+    .resSec {
+        margin: 1rem 0;
+    }
+
+    #proMain {
+        margin: 0.5rem 0;
+    }
+
+    .sePara1 {
+        font-size: 0.8rem;
+    }
+
+    .perMain cite {
+        font-size: 1rem;
+    } 
+
+    #projectDiv {
+        padding: 0.5rem;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #openText {
+        padding: 0.5rem;
+    }
+
+    #openText span {
+        font-size: 1.5rem;
+    } 
+
+    #container {
+        font-size: 1.5rem;
+    }
+}
+
+
+
+
+ 
+@media all and (min-width: 768px) and (max-width: 1023px) {
+
+    #body {
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 2rem;
+    }
+
+    #links p {
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        font-size: 1.5rem;
+    }
+
+    #links p:hover {
+        border-radius: 0.2rem;
+        letter-spacing: 1px;
+    }
+
+    #section1 {
+        margin: 6rem 0.5rem;
+    }
+
+    #intro {
+        margin-right: 1rem;
+        font-size: 2rem;
+    }
+    
+    #profile-pic {
+        width: 100%;
+        height: 20rem;
+        padding-right: 3rem;
+    }
+
+    #email-btn {
+        border-radius: 0.2rem;
+        font-size: 2rem;
+        margin-top: 2rem;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+    }
+
+    #email-btn:hover {
+        letter-spacing: 1px;
+    }
+
+    .sections {
+        margin: 6rem 0;
+    }
+
+    .secHeaders {
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+
+    #pro-para {
+        font-size: 1.5rem;
+    }
+
+    #dev-img {
+        width: 15rem;
+    }
+
+    #grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #serImg {
+        width: 100%;
+    }
+
+    #serName {
+        font-size: 1.5rem;
+    }
+
+    .socImg {
+        width: 5rem;
+    }
+
+    .socName {
+        font-size: 1.5rem;
+    }
+    
+    .back-btn {
+        font-size: 2rem;
+    }
+  
+    #resumeDiv {
+        padding: 1rem;
+    }
+
+    .resSec {
+        margin: 3rem 0;
+    }
+
+    #proMain {
+        margin: 1rem 0;
+    }
+
+    .perMain cite {
+        font-size: 1.5rem;
+    }
+
+    .resPara {
+        font-size: 2rem; 
+    }
+
+    .resParas {
+        font-size: 1.5rem;
+    }
+
+    .sePara {
+        font-size: 2rem;
+    }
+
+    #seName {
+        font-size: 2rem;
+    }
+
+    .sePara1 {
+        font-size: 1.5rem;
+    }
+
+    #projectDiv {
+        padding: 1rem;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    #openText {
+        padding: 1rem;
+    }
+
+    #openText span {
+        font-size: 3rem;
+    }
+
+    #container {
+        font-size: 3rem;
+    }
+}
+
+
+
+
+
+@media all and (min-width: 1024px) {
+
+    #body {
+        padding: 1rem;
+    }
+
+    #body {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    #links p {
+        padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+        font-size: 1.2rem;
+    }
+
+    #links p:hover {
+        border-radius: 0.2rem;
+        letter-spacing: 0.5px;
+    }
+
+    #section1 {
+        margin: 3rem 0.5rem;
+    }
+
+    #intro {
+        font-size: 1.2rem;
+    }
+
+    #profile-pic {
+        width: 100%;
+        height: 15rem;
+    }
+
+    #email-btn {
+        border-radius: 0.2rem;
+        font-size: 1.2rem;
+        margin-top: 2rem;
+        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    }
+
+    #email-btn:hover {
+        letter-spacing: 1px;
+    }
+
+    .sections {
+        margin: 3rem 0;
+    }
+
+    .secHeaders {
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+    }
+
+    #pro-para {
+        font-size: 1.2rem;
+    }
+
+    #dev-img {
+        width: 10rem;
+    }
+
+    #grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #serImg {
+        width: 100%;
+    }
+
+    #serName {
+        font-size: 1rem;
+    }
+
+    .socImg {
+        width: 3rem;
+    }
+
+    .socName {
+        font-size: 1.2rem;
+    }
+    
+    .back-btn {
+        font-size: 1.5rem;
+    }
+  
+    #resumeDiv {
+        padding: 1rem;
+    }
+
+    .resSec {
+        margin: 2rem 0;
+    }
+
+    #proMain {
+        margin: 1rem 0;
+    }
+
+    .perMain cite {
+        font-size: 1.2rem;
+    }
+
+    .resPara {
+        font-size: 1.5rem; 
+    }
+
+    .resParas {
+        font-size: 1.2rem;
+    }
+
+    .sePara {
+        font-size: 1.5rem;
+    }
+
+    #seName {
+        font-size: 1.5rem;
+    }
+
+    .sePara1 {
+        font-size: 1.2rem;
+    }
+
+    #projectDiv {
+        padding: 1rem;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+    #openText {
+        padding: 1rem;
+    }
+
+    #openText span {
+        font-size: 2rem;
+    }
+
+    #container {
+        font-size: 2rem;
+    }
+} 
