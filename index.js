@@ -76,6 +76,91 @@ document.getElementById("cloRes").addEventListener("click", ()=> {
     document.getElementById("body").classList.remove('removePad')
 })
 
+
+const projects = [
+    {
+        id:1,
+        img:'myWebsite.jpg',
+        author:'This is a custom website that i built using HTML, CSS and JavaScript.',
+        link: 'https://akinsewebsite.netlify.app/'
+    },
+    {
+        id:2,
+        img:'liveseg.jpg',
+        author:'I devloped this live football streaming app using Bootstrap.',
+        link:'https://liveseg.netlify.app/' // updating
+    },
+    {
+        id:3,
+        img:'birthday.jpg',
+        author:'This is a birthday reminder app developed using React.js.',
+        list:'https://akinse-birthday-app.netlify.app/'
+    },
+    {
+        id:4,
+        img:'calculator.jpg',
+        author:'A mathematical calulator built from scratch with mainly JavaSript.',
+        link:'https://akinse-calculator.netlify.app/'
+    },
+    {
+        id:5,
+        img:'vowel_game.jpg',
+        author:'This is a app which calculates the amount of vowels in a word.',
+        list:'https://akinse-vowelgame.netlify.app/'
+    },
+    {
+        id:6,
+        img:'form.jpg',
+        author:'A custom form which delivers data using GET method to back-end developers. ',
+        list:'https://akinse-birthday-app.netlify.app/'
+    },
+    {
+        id:7,
+        img:'extension.jpg',
+        author:'This extension helps to rack visited sites and URL\'S.',
+        link:'https://liveseg.netlify.app/' // generate link
+    },
+    {
+        id:8,
+        img:'expense.jpg',
+        author:'Built mainly to keep record of our expenses on commodities.',
+        link:'https://akinse-expense.netlify.app/' // updating
+    },
+    {
+        id:9,
+        img:'todo.jpg',
+        author:'This app helps to store task to be completed.',
+        link:'https://akinse-todo.app/' // updating
+    },
+    {
+        id:10,
+        img:'library.jpg',
+        author:'This is a UI design template for a library website.',
+        link:'https://liveseg.netlify.app/'// updating
+    },
+    {
+        id:11,
+        img:'shopify.jpg',
+        author:'This is a custom website that contain different features.',
+        link:'https://liveseg.netlify.app/' // updating
+    }
+]
+
+let shelfGrid = ``
+for(let x=0; x< projects.length; x++) {
+    if(x === 6) {break;}
+    shelfGrid = `
+        <div id="serDiv">
+            <section><img src=${projects[x].img} id="serImg" alt=""></section>
+            <section id="serBottom">    
+                <cite id="serName">${projects[x].author}</cite>
+                <a id="serLink" href="${projects[x].link}"><i class="fa-thin fa-file-check">&rightarrow;</i></a>
+            </section>
+        </div>
+        `
+    document.getElementById('grid').innerHTML += shelfGrid
+}
+
 function creaShelf(array, id) {
     let shelf = ``
     array.map((detail) => {
@@ -91,74 +176,6 @@ function creaShelf(array, id) {
         document.getElementById(id).innerHTML += shelf
     })
 }
-
-
-const service =[
-    {
-        id:1,
-        img:'myWebsite.png',
-        author:'This is a custom website that i built using HTML, CSS and JavaScript.',
-        link: 'https://segunwebsite.netlify.app/'
-    },
-    {
-        id:2,
-        img:'livesegball.png',
-        author:'I devloped this live football streaming app using Bootstrap.',
-        link:'../HTML/picGame.html'
-    },
-    {
-        id:3,
-        img:'birthday.jpg',
-        author:'This is a birthday reminder app developed using React.js ',
-        list:'../HTML/expense.html'
-    },
-    {
-        id:4,
-        img:'calculator.jpg',
-        author:'A mathematical calulator built from scratch with mainly JavaSript.',
-        link:'../HTML/calculator.html'
-    }
-]
-creaShelf(service, 'grid')
-
-const projects = [
-    {
-        id:1,
-        img:'myWebsite.png',
-        author:'This is a custom website that i built with HTML, CSS and JavaScript.',
-        link: 'https://segunwebsite.netlify.app/'
-    },
-    {
-        id:2,
-        img:'livesegball.png',
-        author:'I devloped this football streaming app using Bootstrap frameworks.',
-        link:'../HTML/picGame.html'
-    },
-    {
-        id:3,
-        img:'birthday.jpg',
-        author:'This is a React.Js birthday app, it reminds user of daily birthday\'s. ',
-        list:'../HTML/expense.html'
-    },
-    {
-        id:4,
-        img:'shopify.png',
-        author:'A personal UI/UX design projects for businesses',
-        link:'../HTML/shopify.html'
-    },
-    {
-        id:5,
-        img:'form.png',
-        author:'It is a custom application form which use\'s POST method to recieve sent data.',
-        link:'../HTML/blackJack.html'
-    },
-    {
-        id:6,
-        img:'calculator.jpg',
-        author:'My calulator built mainly with JavaSript to solve mathematical problems.',
-        link:'../HTML/calculator.html'
-    }
-]
 creaShelf(projects, 'projectDiv')
 
 
