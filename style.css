@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    /* font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body {
@@ -12,6 +12,10 @@ body {
 
 #body.removePad {
     padding: 0;
+}
+
+.logo {
+    letter-spacing: 1px;
 }
 
 #links {
@@ -64,7 +68,6 @@ body {
 }
 
 #front-end {
-    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
     color: #19A7CE;
 }
 
@@ -72,9 +75,8 @@ body {
     background-color: transparent;
     color: #F0EDD4;
     transition: all 200ms linear;
-    font-weight: 700;
+    font-weight: 400;
     border-radius: 0.25rem;
-    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 #email-btn:hover {
@@ -100,7 +102,7 @@ body {
 }
 
 .proBarText {
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .proBar {
@@ -318,7 +320,11 @@ body {
 
 
     #header {
-        padding-bottom: 1rem;
+        padding: 1rem 0;
+    }
+
+    .logo {
+        font-size: 1.5rem;
     }
 
     #links p {
@@ -505,7 +511,7 @@ body {
 @media all and (min-width: 768px) and (max-width: 1023px) {
 
     #header {
-        padding-bottom: 1.5rem;
+        padding: 1.5rem 0;
     }
 
     .logo {
@@ -718,7 +724,7 @@ body {
 @media all and (min-width: 1024px) {
 
     #header {
-        padding-bottom: 1rem;
+        padding: 1rem 0;
     }
 
     .logo {
@@ -737,11 +743,11 @@ body {
 
     #intro {
         font-size: 2rem;
-        margin: 1rem 0;
+        margin: 0.5rem 0 0.5rem 0;
     }
 
     #profile-div {
-        margin: 1rem 0;
+        margin: 0.5rem 0 1rem 0;
     }
 
     #profile-pic {
@@ -752,7 +758,7 @@ body {
     #email-btn {
         font-size: 1rem;
         border: 2px solid #19A7CE;
-        margin-top: 2rem;
+        margin-top: 1rem;
         padding: 0.75rem 2.5rem 0.75rem 2.5rem;
     }
 

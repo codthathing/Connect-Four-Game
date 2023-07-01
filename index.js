@@ -118,7 +118,7 @@ const projects = [
         id:7,
         img:'extension.jpg',
         author:'This extension helps to rack visited sites and URL\'S.',
-        link:'https://liveseg.netlify.app/' // generate link
+        link:'https://akinse-extension.netlify.app/' // generate link
     },
     {
         id:8,
@@ -136,13 +136,13 @@ const projects = [
         id:10,
         img:'library.jpg',
         author:'This is a UI design template for a library website.',
-        link:'https://liveseg.netlify.app/'// updating
+        link:'https://akinse-library.netlify.app/'// updating
     },
     {
         id:11,
         img:'shopify.jpg',
         author:'This is a custom website that contain different features.',
-        link:'https://liveseg.netlify.app/' // updating
+        link:'https://akinse-shop.netlify.app/' // updating
     }
 ]
 
