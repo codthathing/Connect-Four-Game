@@ -4,54 +4,54 @@ const resDiv = document.getElementById("resDiv")
 const proDiv = document.getElementById("proDiv")
 // let divForJobs = document.getElementById("divForJobs")
 
-let openText = document.getElementById("openText")
-window.addEventListener("load", ()=> {
-    document.querySelector('body').style.overflowY="hidden"
-    conText([`Hi, i'm a Front-end Developer looking forward to working with you.`],'wordText',['blue'])
-    function conText(words, id, colors) {
-        if (colors === undefined) colors = ['#990000'];
-        var visible = true;
-        var countLetter = 1;
-        var x =1;
-        var waiting = false;
-        var target = document.getElementById(id)
-        target.setAttribute('style', 'color:' +colors[0])
-        window.setInterval(function() {
-            if(countLetter === 0 && waiting === false) {
-                waiting === true;
-                target.innerHTML = words[0].substring(0, countLetter)
-                window.setTimeout(()=> {
-                    var usedColor = colors.shift();
-                    colors.push(usedColor);
-                    var usedWord = words.shift();
-                    words.push(usedWord);
-                    x = 1;
-                    target.setAttribute('style', 'color:' +colors[0]);
-                    countLetter += x;
-                    waiting = false
-                }, 1000)
-            } 
-            else if( waiting === false) {
-                target.innerHTML = words[0].substring(0, countLetter);
-                countLetter += x
-            }
-        }, 120)
+// let openText = document.getElementById("openText")
+// window.addEventListener("load", ()=> {
+//     document.querySelector('body').style.overflowY="hidden"
+//     conText([`Hi, i'm a Front-end Developer looking forward to working with you.`],'wordText',['blue'])
+//     function conText(words, id, colors) {
+//         if (colors === undefined) colors = ['#990000'];
+//         var visible = true;
+//         var countLetter = 1;
+//         var x =1;
+//         var waiting = false;
+//         var target = document.getElementById(id)
+//         target.setAttribute('style', 'color:' +colors[0])
+//         window.setInterval(function() {
+//             if(countLetter === 0 && waiting === false) {
+//                 waiting === true;
+//                 target.innerHTML = words[0].substring(0, countLetter)
+//                 window.setTimeout(()=> {
+//                     var usedColor = colors.shift();
+//                     colors.push(usedColor);
+//                     var usedWord = words.shift();
+//                     words.push(usedWord);
+//                     x = 1;
+//                     target.setAttribute('style', 'color:' +colors[0]);
+//                     countLetter += x;
+//                     waiting = false
+//                 }, 1000)
+//             } 
+//             else if( waiting === false) {
+//                 target.innerHTML = words[0].substring(0, countLetter);
+//                 countLetter += x
+//             }
+//         }, 120)
     
-        window.setInterval(()=> {
-            if( visible === true) {
-                document.getElementById('console').className = 'underscore hidden';
-                visible = false;
-            } else {
-                document.getElementById('console').className = 'underscore';
-                visible = true
-            }
-        }, 500)
-    }
-    setTimeout(()=> {
-        openText.classList.add('closeText')
-        document.querySelector('body').style.overflowY="scroll"
-    }, 9000)
-})
+//         window.setInterval(()=> {
+//             if( visible === true) {
+//                 document.getElementById('console').className = 'underscore hidden';
+//                 visible = false;
+//             } else {
+//                 document.getElementById('console').className = 'underscore';
+//                 visible = true
+//             }
+//         }, 500)
+//     }
+//     setTimeout(()=> {
+//         openText.classList.add('closeText')
+//         document.querySelector('body').style.overflowY="scroll"
+//     }, 9000)
+// })
 
 
 document.getElementById("proBtn").addEventListener("click", ()=> {
@@ -81,25 +81,25 @@ const projects = [
     {
         id:1,
         img:'myWebsite.jpg',
-        author:'This is a custom website that i built using HTML, CSS and JavaScript.',
+        author:'A custom website built using HTML, CSS and JavaScript.',
         link: 'https://akinsewebsite.netlify.app/'
     },
     {
         id:2,
         img:'liveseg.jpg',
-        author:'I devloped this live football streaming app using Bootstrap.',
+        author:'I developed this live football streaming app using Bootstrap.',
         link:'https://liveseg.netlify.app/' // updating
     },
     {
         id:3,
         img:'birthday.jpg',
-        author:'This is a birthday reminder app developed using React.js.',
+        author:'This is a birthday reminder app developed using React.js to help user remember daily saved birthdays.',
         list:'https://akinse-birthday-app.netlify.app/'
     },
     {
         id:4,
         img:'calculator.jpg',
-        author:'A mathematical calulator built from scratch with mainly JavaSript.',
+        author:'A mathematical calulator built with mainly JavaSript.',
         link:'https://akinse-calculator.netlify.app/'
     },
     {
@@ -148,14 +148,12 @@ const projects = [
 
 let shelfGrid = ``
 for(let x=0; x< projects.length; x++) {
-    if(x === 6) {break;}
+    if(x === 5) {break;}
     shelfGrid = `
         <div id="serDiv">
-            <section><img src=${projects[x].img} id="serImg" alt=""></section>
-            <section id="serBottom">    
-                <cite id="serName">${projects[x].author}</cite>
-                <a id="serLink" href="${projects[x].link}"><i class="fa-thin fa-file-check">&rightarrow;</i></a>
-            </section>
+            <a href="${projects[x].link}">
+                <img src=${projects[x].img} id="serImg" alt="">
+            </a>
         </div>
         `
     document.getElementById('grid').innerHTML += shelfGrid
@@ -165,13 +163,13 @@ function creaShelf(array, id) {
     let shelf = ``
     array.map((detail) => {
         shelf = `
-            <div id="serDiv">
-                <section><img src=${detail.img} id="serImg" alt=""></section>
-                <section id="serBottom">    
-                    <cite id="serName">${detail.author}</cite>
-                    <a id="serLink" href="${detail.link}"><i class="fa-thin fa-file-check">&rightarrow;</i></a>
-                </section>
-            </div>
+                <div id="serProDiv">
+                    <section><img src=${detail.img} id="serImg" alt=""></section>
+                    <section id="serBottom">    
+                        <p id="serName">${detail.author}</p>
+                        <a id="serLink" href="${detail.link}">&rightarrow;</a>     
+                    </section>
+                </div>
             `
         document.getElementById(id).innerHTML += shelf
     })

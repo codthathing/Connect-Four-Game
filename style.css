@@ -2,20 +2,16 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    /* font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
 }
 
 body {
     background-color: black;
     color: #F0EDD4;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #body.removePad {
     padding: 0;
-}
-
-header {
-    width: 100%; 
 }
 
 #links {
@@ -36,32 +32,49 @@ header {
 }
 
 #section1 {
-    display: flex;
-    justify-content: space-between;
+    /* background: url(https://source.unsplash.com/random); */
+    background: url("tunnel.jpg") no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 
-#intro-div {
-    width: 60%;
+.sections:nth-child(3) {
+    background-color: rgba(225, 225, 225, 0.075);
 }
 
-#profile-div {
-    width: 40%;
+.secHeaders {
+    font-weight: 200;
+}
+
+#parSec {
+    width: 80%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
 }
 
 #intro {
-    font-style: italic;
+    font-weight: 200;
+}
+
+#profile-div {
+    text-align: center;
 }
 
 #front-end {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
     color: #19A7CE;
 }
 
 #email-btn {
     background-color: transparent;
-    border: 2px solid #19A7CE;
     color: #F0EDD4;
     transition: all 200ms linear;
+    font-weight: 700;
+    border-radius: 0.25rem;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 #email-btn:hover {
@@ -73,20 +86,38 @@ header {
 
 .secHeaders {
     color: #19A7CE;
+    font-weight: 700;
 }
 
-/* .sections {
-    border: 1px solid white;
-} */
+#paraText {
+    font-weight: 100;
+}
 
-#pro-para {
+.proBarDiv {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-/* #dev-img {
-    border: 1px solid white;
-} */
+.proBarText {
+    font-weight: 700;
+}
+
+.proBar {
+    border-radius: 1rem;
+    text-align: center;
+    color: black;
+    font-weight: 700;
+    width: 70%;
+}
+
+.proBar:nth-child(1) {
+    margin-top: 0;
+}
+
+.proBar:nth-child(5) {
+    margin-bottom: 0;
+}
 
 #grid {
     display: grid;
@@ -94,12 +125,11 @@ header {
 }
 
 #serDiv {
-    margin: 0.3rem;
-    display: grid;
+    width: 100%;
 }
 
 #serImg {
-    justify-self: center;
+    width: 100%;
 }
 
 #serName {
@@ -118,12 +148,9 @@ header {
 }
 
 .socDiv {
-    margin: 0.5rem;
     display: flex;
     align-items: center;
-    border: 1px solid #19A7CE;
     border-radius: 0.2rem;
-    padding-right: 1rem;
     width: fit-content;
 }
 
@@ -133,6 +160,29 @@ header {
 
 .socName {
     color: #F0EDD4;
+}
+
+#mesDiv {
+    display: grid;
+    width: 80%;
+}
+
+#mesInput {
+    width: 100%;
+    resize: none;
+    outline: none;
+    background-color: black;
+    color: #19A7CE;
+    border-radius: 0.25rem;
+}
+
+#mesBtn {
+    border: hidden;
+    outline: none;
+    background-color: #19A7CE;
+    color: #F0EDD4;
+    justify-self:end;
+    font-weight: 200;
 }
 
 .nav-item {
@@ -221,7 +271,11 @@ header {
     display: grid;
 }
 
-#openText {
+#serProDiv {
+    width: 100%;
+}
+
+/* #openText {
     background-color: black;
     position: fixed;
     height: 100vh;
@@ -242,9 +296,9 @@ header {
 #openText.closeText {
     display: none;
     opacity: 0;
-}
+} */
 
-#container {
+/* #container {
     position: absolute;
 }
 
@@ -255,18 +309,20 @@ header {
 
 .hidden {
     opacity: 0;
-}
+} */
 
 
 
 
 @media all and (max-width: 767px) {
 
-    #body {
-        padding: 0.5rem;
+
+    #header {
+        padding-bottom: 1rem;
     }
 
     #links p {
+        font-size: 1rem;
         padding: 0.25rem 0.5rem 0.25rem 0.5rem;
     }
 
@@ -275,24 +331,25 @@ header {
         letter-spacing: 0.5px;
     }
 
-    #section1 {
-        margin: 3rem 0.5rem;
+    #intro {
+        font-size: 1.25rem;
+        margin: 1rem 0;
     }
 
-    #intro {
-        margin-right: 1rem;
+    #profile-div {
+        margin: 4rem 0 2rem 0;
     }
     
     #profile-pic {
-        width: 100%;
-        height: 10rem;
+        width: 12rem;
+        height: 14rem;
     }
 
     #email-btn {
-        border-radius: 0.2rem;
         font-size: 1rem;
-        margin-top: 1rem;
-        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+        margin: 2rem 0;
+        padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+        border: 2.5px solid #19A7CE;
     }
 
     #email-btn:hover {
@@ -300,38 +357,96 @@ header {
     }
 
     .sections {
-        margin: 3rem 0;
+        padding: 1rem;
+    }
+
+    .sections:nth-child(3) {
+        padding-bottom: 2.5rem;
     }
 
     .secHeaders {
-        margin-bottom: 0.5rem;
+        margin: 3.5rem 0;
+        font-size: 2rem;
     }
 
-    #pro-para {
-        gap: 1rem;
+    #paraText {
+        margin: 4rem 0;
+        font-size: 1.25rem;
+    }
+
+    #proBarTot {
+        margin-top: 5rem;
+    }
+
+    .proBarText {
         font-size: 1rem;
     }
 
-    #dev-img {
-        width: 15rem;
-        height: 10rem;
-        margin-top: -1.5rem;
+    .proBar {
+        font-size: 0.7rem;
+        margin: 1rem 0;
     }
-    
+
     #grid {
         grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 0.75rem;
+        margin-top: 4rem;
+    }
+
+    #serDiv {
+        border: 1px solid #F0EDD4;
+        border-radius: 0.5rem;
+        padding: 0.25rem;
+    }
+
+    #serDiv:nth-child(3) {
+        grid-row: 2;
+        grid-column: 1 / span 2;
     }
 
     #serImg {
-        width: 100%;
+        height: 7.5rem;
+        border-radius: 0.5rem;
     }
 
     #serName {
         font-size: 1rem;
     }
 
+    #serLink {
+        font-size: 2rem;
+    }
+
+    .socDiv {
+        border: 1px solid #19A7CE;
+        padding-right: 1rem;
+        margin: 0.5rem;
+    }
+
     .socImg {
-        width: 3rem;
+        width: 3.5rem;
+    }
+
+    .socName {
+        font-size: 1.25rem;
+    }
+
+    #mesDiv {
+        margin: 2rem 0 0 0.5rem; 
+    }
+
+    #mesInput {
+        border: 1px solid #19A7CE;
+        padding: 0.25rem;
+        font-size: 1.25rem;
+        height: 12.5rem;
+    }
+
+    #mesBtn {
+        font-size: 1.25rem;
+        padding: 0.5rem 1.5rem;
+        margin: 0.5rem 0;
     }
 
     .back-btn {
@@ -361,9 +476,16 @@ header {
     #projectDiv {
         padding: 0.5rem;
         grid-template-columns: 1fr 1fr;
+        grid-gap: 0.5rem;
     }
 
-    #openText {
+    #serProDiv {
+        border: 1px solid #F0EDD4;
+        border-radius: 0.5rem;
+        padding: 0.25rem;
+    }
+
+    /* #openText {
         padding: 0.5rem;
     }
 
@@ -373,7 +495,7 @@ header {
 
     #container {
         font-size: 1.5rem;
-    }
+    } */
 }
 
 
@@ -382,17 +504,17 @@ header {
  
 @media all and (min-width: 768px) and (max-width: 1023px) {
 
-    #body {
-        padding: 1rem;
+    #header {
+        padding-bottom: 1.5rem;
     }
 
     .logo {
-        font-size: 2rem;
+        font-size: 3rem;
     }
 
     #links p {
         padding: 0.5rem 1rem 0.5rem 1rem;
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     #links p:hover {
@@ -400,26 +522,25 @@ header {
         letter-spacing: 1px;
     }
 
-    #section1 {
-        margin: 6rem 0.5rem;
+    #intro {
+        font-size: 2.5rem;
+        margin: 3rem 0;
     }
 
-    #intro {
-        margin-right: 1rem;
-        font-size: 2rem;
+    #profile-div {
+        margin: 5rem 0;
     }
     
     #profile-pic {
-        width: 100%;
-        height: 20rem;
-        padding-right: 3rem;
+        width: 20rem;
+        height: 22.5rem;
     }
 
     #email-btn {
-        border-radius: 0.2rem;
         font-size: 2rem;
-        margin-top: 2rem;
-        padding: 0.5rem 1rem 0.5rem 1rem;
+        margin: 3rem 0;
+        padding: 1.5rem 5rem 1.5rem 5rem;
+        border: 3px solid #19A7CE;
     }
 
     #email-btn:hover {
@@ -427,35 +548,77 @@ header {
     }
 
     .sections {
-        margin: 6rem 0;
+        padding: 1.5rem;
+    }
+
+    .sections:nth-child(3) {
+        padding-bottom: 5rem;
     }
 
     .secHeaders {
-        margin-bottom: 1rem;
+        margin: 5rem 0;
+        font-size: 3.5rem;
+    }
+
+    #paraText {
+        margin: 7.5rem 0;
+        font-size: 2.5rem;
+    }
+
+    #proBarTot {
+        margin-top: 12.5rem;
+    }
+
+    .proBarText {
         font-size: 2rem;
     }
 
-    #pro-para {
-        gap: 5rem;
+    .proBar {
         font-size: 1.5rem;
-    }
-
-    #dev-img {
-        width: 25rem;
-        height: 15rem;
-        margin-top: -3rem;
+        margin: 1.5rem 0;
     }
 
     #grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+        margin-top: 10rem;
+    }
+    
+    #serDiv {
+        border: 2px solid #F0EDD4;
+        border-radius: 0.75rem;
+        padding: 0.5rem;
+    }
+
+    #serDiv:nth-child(1) {
+        grid-row: 1;
+        grid-column: 1 / span 3;
+    }
+
+    #serDiv:nth-child(5) {
+        grid-row: 3;
+        grid-column: 1 / span 3;
     }
 
     #serImg {
-        width: 100%;
+        height: 12.5rem;
+        border-radius: 0.75rem;
     }
 
     #serName {
         font-size: 1.5rem;
+    }
+
+    #serLink {
+        font-size: 2.5rem;
+    }
+
+    .socDiv {
+        border: 2px solid #19A7CE;
+        margin: 1rem;
+        padding: 0.5rem;
+        padding-right: 2rem;
     }
 
     .socImg {
@@ -463,7 +626,24 @@ header {
     }
 
     .socName {
-        font-size: 1.5rem;
+        font-size: 2.5rem;
+    }
+
+    #mesDiv {
+        margin: 5rem 0 0 1rem;
+    }
+
+    #mesInput {
+        border: 2px solid #19A7CE;
+        padding: 0.5rem;
+        font-size: 2rem;
+        height: 15rem;
+    }
+
+    #mesBtn {
+        font-size: 2rem;
+        padding: 0.75rem 2rem;
+        margin: 1.5rem 0;
     }
     
     .back-btn {
@@ -508,10 +688,17 @@ header {
 
     #projectDiv {
         padding: 1rem;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+    }
+
+    #serProDiv {
+        border: 2px solid #F0EDD4;
+        border-radius: 0.75rem;
+        padding: 0.5rem;
     }
     
-    #openText {
+    /* #openText {
         padding: 1rem;
     }
 
@@ -521,7 +708,7 @@ header {
 
     #container {
         font-size: 3rem;
-    }
+    } */
 }
 
 
@@ -530,22 +717,17 @@ header {
 
 @media all and (min-width: 1024px) {
 
-    #body {
-        padding: 1rem;
-    }
-
-    #body {
-        width: 60%;
-        margin: 0 auto;
+    #header {
+        padding-bottom: 1rem;
     }
 
     .logo {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
     
     #links p {
         padding: 0.5rem 0.75rem 0.5rem 0.75rem;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
     }
 
     #links p:hover {
@@ -553,24 +735,25 @@ header {
         letter-spacing: 0.5px;
     }
 
-    #section1 {
-        margin: 3rem 0.5rem;
+    #intro {
+        font-size: 2rem;
+        margin: 1rem 0;
     }
 
-    #intro {
-        font-size: 1.2rem;
+    #profile-div {
+        margin: 1rem 0;
     }
 
     #profile-pic {
-        width: 100%;
-        height: 15rem;
+        width: 15rem;
+        height: 17.5rem;
     }
 
     #email-btn {
-        border-radius: 0.2rem;
-        font-size: 1.2rem;
+        font-size: 2rem;
+        border: 2px solid #19A7CE;
         margin-top: 2rem;
-        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+        padding: 0.5rem 1.5rem 0.5rem 1.5rem;
     }
 
     #email-btn:hover {
@@ -578,43 +761,96 @@ header {
     }
 
     .sections {
-        margin: 3rem 0;
+        padding: 1rem;
+    }
+
+    .sections:nth-child(3) {
+        padding-bottom: 2.5rem;
     }
 
     .secHeaders {
-        margin-bottom: 0.5rem;
+        margin: 1rem 0;
         font-size: 1.5rem;
     }
 
-    #pro-para {
-        gap: 2rem;
+    #paraText {
+        margin: 5rem 0;
+        font-size: 1.5rem;
+    }
+
+    /* #proBarTot {
+        margin-top: 5rem;
+    } */
+
+    .proBarText {
         font-size: 1.2rem;
     }
 
-    #dev-img {
-        width: 15rem;
-        height: 10rem;
-        margin-top: -2.5rem;
+    .proBar {
+        font-size: 1rem;
+        margin: 1rem 0;
     }
 
     #grid {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+        margin: 2rem 4rem 0 4rem;
+    }
+
+    #serDiv {
+        padding: 0.25rem;
+        border: 1px solid #F0EDD4;
+        border-radius: 0.5rem;
+    }
+
+    #serDiv:nth-child(3) {
+        grid-row: 2;
+        grid-column: 1 / span 2;
     }
 
     #serImg {
-        width: 100%;
+        border-radius: 0.5rem;
+        height: 9rem;
     }
 
     #serName {
         font-size: 1rem;
     }
 
+    #serLink {
+        font-size: 2rem;
+    }
+
+    .socDiv {
+        border: 1px solid #19A7CE;
+        padding-right: 1.5rem;
+        margin: 1rem;
+    }
+
     .socImg {
-        width: 3rem;
+        width: 3.5rem;
     }
 
     .socName {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+    }
+
+    #mesDiv {
+        margin: 3rem 0 0 1rem; 
+    }
+
+    #mesInput {
+        border: 1px solid #19A7CE;
+        padding: 0.5rem;
+        font-size: 1.5rem;
+        height: 12.5rem;
+    }
+
+    #mesBtn {
+        font-size: 1.5rem;
+        padding: 0.5rem 2rem;
+        margin: 1rem 0;
     }
     
     .back-btn {
@@ -659,10 +895,17 @@ header {
 
     #projectDiv {
         padding: 1rem;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 1rem;
+    }
+
+    #serProDiv {
+        border: 1px solid #F0EDD4;
+        border-radius: 0.5rem;
+        padding: 0.25rem;
     }
     
-    #openText {
+    /* #openText {
         padding: 1rem;
     }
 
@@ -672,5 +915,5 @@ header {
 
     #container {
         font-size: 2rem;
-    }
+    } */
 } 
