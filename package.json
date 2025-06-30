@@ -1,0 +1,29 @@
+{
+  "name": "connect-four-game",
+  "version": "1.0.0",
+  "description": "Connect four game to practice my typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codthathing/Connect-Four-Game.git"
+  },
+  "author": "Codthathing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codthathing/Connect-Four-Game/issues"
+  },
+  "homepage": "https://github.com/codthathing/Connect-Four-Game#readme",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1"
+  }
+}
