@@ -1,3 +1,4 @@
+* **Background Purple:** #7B47FF
 * **Background Purple:** #A259FF
 * **Light(hover) Purple:** #7C4DDA
 * **Player CPU Red:** #FF5A84

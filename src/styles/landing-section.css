@@ -1,0 +1,63 @@
+#landing-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#landing-inner-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem 0;
+  width: 80%;
+}
+
+#logo-icon {
+  width: 3.25rem;
+}
+
+#landing-buttons-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem 0;
+  width: 100%;
+}
+
+.landing-buttons {
+  padding: 0.75rem;
+  border: 3px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 1rem;
+  box-shadow: 0px 8px black;
+}
+
+.landing-buttons-text {
+  text-transform: uppercase;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.landing-buttons-image {
+  width: 4rem;
+}
+
+@media all and (max-width: 1023px) {
+  #landing-section {
+    width: 100%;
+    height: 100%;
+    background-color: #a259ff;
+  }
+}
+
+@media all and (max-width: 767px) {
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+}
+
+@media all and (min-width: 1024px) {
+}
