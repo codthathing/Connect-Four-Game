@@ -1,3 +1,4 @@
+import "./styles/style.css";
 import { ButtonClass } from "./components/ButtonClass";
 
 type ButtonType = {
