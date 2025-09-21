@@ -8,29 +8,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem 0;
-  width: 80%;
 }
 
-#logo-icon {
-  width: 3.25rem;
-}
-
-#landing-buttons-section {
+#landing-buttons-div {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem 0;
   width: 100%;
 }
 
 .landing-buttons {
-  padding: 0.75rem;
   border: 3px solid black;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 1rem;
   box-shadow: 0px 8px black;
+  transition: all 250ms linear;
+  will-change: all;
+  cursor: pointer;
+}
+
+.landing-buttons:hover {
+  box-shadow: 0px 8px #5e2ed6;
+  border: 3px solid #5e2ed6;
 }
 
 .landing-buttons-text {
@@ -38,26 +38,110 @@
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-weight: bold;
-  font-size: 1rem;
 }
 
-.landing-buttons-image {
-  width: 4rem;
-}
-
-@media all and (max-width: 1023px) {
+@media all and (max-width: 767px) {
   #landing-section {
     width: 100%;
     height: 100%;
     background-color: #a259ff;
   }
-}
 
-@media all and (max-width: 767px) {
+  #landing-inner-div {
+    gap: 4rem 0;
+    width: 80%;
+  }
+
+  #logo-icon {
+    width: 3.25rem;
+  }
+
+  #landing-buttons-div {
+    gap: 1.5rem 0;
+  }
+
+  .landing-buttons {
+    padding: 0 0.75rem;
+    height: 4.25rem;
+  }
+
+  .landing-buttons-text {
+    font-size: 1rem;
+  }
+
+  .landing-buttons-image {
+    width: 4rem;
+  }
 }
 
 @media all and (min-width: 768px) and (max-width: 1023px) {
+  #landing-section {
+    width: 100%;
+    height: 100%;
+    background-color: #a259ff;
+  }
+
+  #landing-inner-div {
+    gap: 5rem 0;
+    width: 70%;
+  }
+
+  #logo-icon {
+    width: 5rem;
+  }
+
+  #landing-buttons-div {
+    gap: 2.5rem 0;
+  }
+
+  .landing-buttons {
+    padding: 0 1.5rem;
+    height: 6rem;
+  }
+
+  .landing-buttons-text {
+    font-size: 1.5rem;
+  }
+
+  .landing-buttons-image {
+    width: 5rem;
+  }
 }
 
 @media all and (min-width: 1024px) {
+  #landing-section {
+    width: 30%;
+    height: 60%;
+    background-color: #7b47ff;
+    border-radius: 1.5rem;
+    border: 3px solid black;
+    padding: 0 2.5rem;
+    box-shadow: 0px 8px black;
+  }
+
+  #landing-inner-div {
+    width: 100%;
+    gap: 4rem 0;
+  }
+
+  #logo-icon {
+    width: 3.5rem;
+  }
+
+  #landing-buttons-div {
+    gap: 1.5rem 0;
+  }
+
+  .landing-buttons {
+    padding: 0 1rem;
+    height: 4.25rem;
+  }
+
+  .landing-buttons-text {
+    font-size: 1rem;
+  }
+
+  .landing-buttons-image {
+    width: 4rem;
+  }
 }
