@@ -1,13 +1,7 @@
 const landingButtonsDiv = document.querySelector("#landing-buttons-div") as HTMLDivElement;
 
 export class ButtonClass {
-  constructor (
-    readonly text: string,
-    readonly backgroundStyle: string,
-    readonly image?: string,
-    readonly alt?: string,
-    readonly textStyle?: string
-  ){};
+  constructor(readonly text: string, readonly backgroundStyle: string, readonly image?: string, readonly alt?: string, readonly textStyle?: string) {}
 
   render() {
     const div = document.createElement("div");
@@ -27,7 +21,7 @@ export class ButtonClass {
       image.setAttribute("alt", this.alt);
       div.append(image);
     }
-    
+
     landingButtonsDiv.append(div);
   }
 }

@@ -2,11 +2,11 @@ import "./styles/style.css";
 import { ButtonClass } from "./components/ButtonClass";
 
 type ButtonType = {
-  text:string, 
-  backgroundStyle: string,
-  image?: string, 
-  alt?: string ,
-  textStyle?: string
+  text: string;
+  backgroundStyle: string;
+  image?: string;
+  alt?: string;
+  textStyle?: string;
 };
 
 const buttonsDetails: ButtonType[] = [
@@ -15,7 +15,7 @@ const buttonsDetails: ButtonType[] = [
   { text: "game rules", backgroundStyle: "#FFFFFF" },
 ];
 
-buttonsDetails.forEach((button: ButtonType) : void => {
+buttonsDetails.forEach((button: ButtonType): void => {
   const buttonElement: ButtonClass = new ButtonClass(button.text, button.backgroundStyle, button.image, button.alt, button.textStyle);
   buttonElement.render();
-})
+});

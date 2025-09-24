@@ -40,6 +40,10 @@
   font-weight: bold;
 }
 
+
+
+
+
 @media all and (max-width: 767px) {
   #landing-section {
     width: 100%;
@@ -74,6 +78,10 @@
   }
 }
 
+
+
+
+
 @media all and (min-width: 768px) and (max-width: 1023px) {
   #landing-section {
     width: 100%;
@@ -107,6 +115,10 @@
     width: 5rem;
   }
 }
+
+
+
+
 
 @media all and (min-width: 1024px) {
   #landing-section {
