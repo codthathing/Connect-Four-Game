@@ -1,0 +1,114 @@
+#rules-section {
+  padding: 2rem 1.5rem 4rem 1.5rem;
+  background-color: white;
+  border-radius: 2.75rem;
+  border: 3px solid black;
+  box-shadow: 0 8px 0px black;
+  position: relative;
+  display: none;
+}
+
+#rules-head {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+#rules-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem 0;
+}
+
+.rules-div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem 0;
+}
+
+.rules-div-head {
+  text-transform: uppercase;
+  color: #7B47FF;
+  letter-spacing: 0.5px;
+  font-size: 1.25rem;
+}
+
+#rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem 0;
+}
+
+.rules-list-item {
+  list-style: none;
+  display: flex;
+  gap: 0 0.5rem;
+}
+
+.rules-div-number {
+  font-weight: 600;
+}
+
+.rules-div-text {
+  color: #242424;
+  font-weight: 300;
+}
+
+#rules-button {
+  width: 4.25rem;
+  height: 4.25rem;
+  background: #FF5A84;
+  border: 3px solid black;
+  border-radius: 100%;
+  box-shadow: 0 4px 0 black;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: -2.25rem;
+  cursor: pointer;
+  transition: all 250ms linear;
+  will-change: all;
+}
+
+#rules-button:hover {
+  box-shadow: 0px 4px #5e2ed6;
+  border: 3px solid #5e2ed6;
+}
+
+#rules-check-icon {
+  font-size: 1.5rem;
+  color: white;
+}
+
+
+
+
+
+@media all and (max-width: 767px) {
+  #rules-section {
+    width: 90%;
+  }
+}
+
+
+
+
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  #rules-section {
+    width: 50%;
+  }
+}
+
+
+
+
+
+@media all and (min-width: 1024px) {
+  #rules-section {
+    width: 30%;
+  }
+}

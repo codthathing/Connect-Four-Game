@@ -1,4 +1,7 @@
 @import url("./landing-section.css");
+@import url("./rules-section.css");
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+
 
 * {
   padding: 0;
@@ -13,4 +16,6 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #7b47ff;
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
 }
