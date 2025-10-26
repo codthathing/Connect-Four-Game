@@ -6,6 +6,7 @@
   box-shadow: 0 8px 0px black;
   position: relative;
   display: none;
+  align-self: center;
 }
 
 #rules-head {

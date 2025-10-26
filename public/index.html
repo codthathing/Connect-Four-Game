@@ -9,7 +9,7 @@
   <body>
     <div id="landing-section">
       <div id="landing-inner-div">
-        <img src="./assets/logo.svg" fetchpriority="high" loading="eager" alt="Logo Icon" id="logo-icon" />
+        <img src="./assets/logo.svg" fetchpriority="high" loading="eager" alt="Logo Icon" class="logo-icon" />
         <div id="landing-buttons-div"></div>
       </div>
     </div>
@@ -18,7 +18,34 @@
       <div id="rules-main"></div>
       <button id="rules-button"><i class="fa-solid fa-check" id="rules-check-icon"></i></button>
     </div>
-    <div id="player-cpu-section"></div>
+    <div id="player-cpu-section">
+      <header class="game-play-header">
+        <button class="game-player-buttons">menu</button>
+        <img src="./assets/logo.svg" fetchpriority="high" loading="eager" alt="Logo Icon" class="logo-icon" />
+        <button class="game-player-buttons">restart</button>
+      </header>
+      <main class="game-play-main">
+        <section class="game-player-section">
+          <img src="./assets/player-one.svg" class="game-player-icon" id="game-player-icon-left" alt="Player 1" />
+          <var>player 1</var>
+          <h1>0</h1>
+        </section>
+        <section class="game-player-section">
+          <img src="./assets/cpu.svg" class="game-player-icon" id="game-player-icon-right" alt="CPU" />
+          <var>cpu</var>
+          <h1>0</h1>
+        </section>
+        <section class="game-board-section">
+          <main class="game-board-main">
+            <div class="game-board-player" id="game-board-player-section"></div>
+          </main>
+          <div class="game-timer-div">
+            <p class="game-timer-topic">player 1's turn</p>
+            <h1 class="gamer-timer-count">6s</h1>
+          </div>
+        </section>
+      </main>
+    </div>
     <div id="player-player-section"></div>
 
     <script type="module" src="./index.js" defer></script>

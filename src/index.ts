@@ -13,8 +13,8 @@ type ButtonType = {
 };
 
 const buttonsDetails: ButtonType[] = [
-  { text: "player vs cpu", backgroundStyle: "#FF5A84", functionValue: "", image: "./assets/player-vs-cpu.svg", alt: "Player CPU", textStyle: "#FFFFFF" },
-  { text: "player vs player", backgroundStyle: "#FFD35A", functionValue: "", image: "./assets/player-vs-player.svg", alt: "Player Player" },
+  { text: "player vs cpu", backgroundStyle: "#FF5A84", functionValue: "player-cpu-section", image: "./assets/player-vs-cpu.svg", alt: "Player CPU", textStyle: "#FFFFFF" },
+  { text: "player vs player", backgroundStyle: "#FFD35A", functionValue: "player-player-section", image: "./assets/player-vs-player.svg", alt: "Player Player" },
   { text: "game rules", backgroundStyle: "#FFFFFF", functionValue: "rules-section" },
 ];
 
@@ -50,3 +50,12 @@ rulesDetails.forEach(({ type, header, list }: RulesType) => {
 
 const rulesButton = document.querySelector("#rules-button") as HTMLButtonElement;
 rulesButton.onclick = () => showSections("landing-section");
+
+
+const boardPlayerSection = document.querySelector("#game-board-player-section") as HTMLDivElement;
+for (let i = 0; i < 7 * 6; i++) {
+  const div = document.createElement("div");
+  div.setAttribute("class", "game-board-hole");
+
+  boardPlayerSection.append(div);
+}
