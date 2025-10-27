@@ -2,6 +2,7 @@ import "./styles/style.css";
 import { ButtonClass } from "./components/ButtonClass";
 import { RulesClass } from "./components/RulesClass";
 import { showSections } from "./utils/showSections";
+import { GamePageClass } from "./components/GamePageClass";
 
 type ButtonType = {
   text: string;
@@ -51,11 +52,26 @@ rulesDetails.forEach(({ type, header, list }: RulesType) => {
 const rulesButton = document.querySelector("#rules-button") as HTMLButtonElement;
 rulesButton.onclick = () => showSections("landing-section");
 
-
-const boardPlayerSection = document.querySelector("#game-board-player-section") as HTMLDivElement;
-for (let i = 0; i < 7 * 6; i++) {
-  const div = document.createElement("div");
-  div.setAttribute("class", "game-board-hole");
-
-  boardPlayerSection.append(div);
+interface GamePageInterface {
+  pageId: string;
+  menuButtonId: string;
+  restartButtonId: string;
+  playerDetails: { playerLogo: string; playeLogoId: string; playerLogoAlt: string; playerName: string; playerScoreId: string }[];
+  gamePlayerTurnId: string;
+  gameTimerId: string;
 }
+
+const playerCpuPageDetails: GamePageInterface = {
+  pageId: "player-cpu-section",
+  menuButtonId: "game-menu-button",
+  restartButtonId: "game-restart-button",
+  playerDetails: [
+    { playerLogo: "./assets/player-one.svg", playeLogoId: "game-player-icon-left", playerLogoAlt: "Player 1", playerName: "you", playerScoreId: "game-player-left-score" },
+    { playerLogo: "./assets/cpu.svg", playeLogoId: "game-player-icon-right", playerLogoAlt: "CPU", playerName: "cpu", playerScoreId: "game-player-right-score" },
+  ],
+  gamePlayerTurnId: "game-player-turn",
+  gameTimerId: "game-player-time",
+};
+
+const playerCpuObject = new GamePageClass(playerCpuPageDetails.pageId, playerCpuPageDetails.menuButtonId, playerCpuPageDetails.restartButtonId, playerCpuPageDetails.playerDetails, playerCpuPageDetails.gamePlayerTurnId, playerCpuPageDetails.gameTimerId);
+playerCpuObject.render();
