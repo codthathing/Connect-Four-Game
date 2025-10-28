@@ -1,7 +1,7 @@
 export class GamePageClass {
-  constructor(private pageId: string, private menuButtonId: string, private restartButtonId: string, private playerDetails: { playerLogo: string; playeLogoId: string; playerLogoAlt: string; playerName: string; playerScoreId: string }[], private gamePlayerTurnId: string, private gameTimerId: string) {}
+  constructor(private pageId: string, private menuButtonFunction: () => void, private restartButtonFunction: () => void, private playerDetails: { playerLogo: string; playeLogoId: string; playerLogoAlt: string; playerName: string; playerScoreId: string }[], private gamePlayerTurnId: string, private gameTimerId: string) {}
 
-  private renderPage(param: [HTMLHeadElement, HTMLDivElement]) {
+  private renderPage(param: [HTMLHeadElement, HTMLDivElement, HTMLDivElement]) {
     const pageDiv = document.querySelector(`#${this.pageId}`) as HTMLDivElement;
     pageDiv.append(...param);
   }
@@ -12,8 +12,8 @@ export class GamePageClass {
 
     const menuButton = document.createElement("button");
     menuButton.setAttribute("class", "game-player-buttons");
-    menuButton.setAttribute("id", this.menuButtonId);
     menuButton.innerText = "menu";
+    menuButton.onclick = () => this.menuButtonFunction();
 
     const img = document.createElement("img");
     img.setAttribute("src", "./assets/logo.svg");
@@ -24,8 +24,8 @@ export class GamePageClass {
 
     const restartButton = document.createElement("button");
     restartButton.setAttribute("class", "game-player-buttons");
-    restartButton.setAttribute("id", this.restartButtonId);
     restartButton.innerText = "restart";
+    restartButton.onclick = () => this.restartButtonFunction();
 
     header.append(menuButton, img, restartButton);
 
@@ -73,6 +73,7 @@ export class GamePageClass {
 
     const timerDiv = document.createElement("div");
     timerDiv.setAttribute("class", "game-timer-div");
+    timerDiv.setAttribute("style", "background: url('./assets/turn-background-red.svg'); background-repeat: no-repeat; background-position: center; background-size: contain;");
 
     const p = document.createElement("p");
     p.setAttribute("class", "game-timer-topic");
@@ -88,6 +89,9 @@ export class GamePageClass {
     section.append(boardMain, timerDiv);
     gameMain.append(section);
 
-    this.renderPage([header, gameMain]);
+    const footerDiv = document.createElement("div");
+    footerDiv.setAttribute("id", "player-footer");
+
+    this.renderPage([header, gameMain, footerDiv]);
   }
 }

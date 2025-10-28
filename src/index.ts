@@ -3,6 +3,8 @@ import { ButtonClass } from "./components/ButtonClass";
 import { RulesClass } from "./components/RulesClass";
 import { showSections } from "./utils/showSections";
 import { GamePageClass } from "./components/GamePageClass";
+import { MenuButtonClass } from "./components/MenuButtonClass";
+import { FormSelectClass } from "./components/FormSelectClass";
 
 type ButtonType = {
   text: string;
@@ -54,8 +56,8 @@ rulesButton.onclick = () => showSections("landing-section");
 
 interface GamePageInterface {
   pageId: string;
-  menuButtonId: string;
-  restartButtonId: string;
+  menuButtonFunction: () => void;
+  restartButtonFunction: () => void;
   playerDetails: { playerLogo: string; playeLogoId: string; playerLogoAlt: string; playerName: string; playerScoreId: string }[];
   gamePlayerTurnId: string;
   gameTimerId: string;
@@ -63,8 +65,8 @@ interface GamePageInterface {
 
 const playerCpuPageDetails: GamePageInterface = {
   pageId: "player-cpu-section",
-  menuButtonId: "game-menu-button",
-  restartButtonId: "game-restart-button",
+  menuButtonFunction: () => (document.getElementById("menu-section")!.style.display = "flex"),
+  restartButtonFunction: () => {},
   playerDetails: [
     { playerLogo: "./assets/player-one.svg", playeLogoId: "game-player-icon-left", playerLogoAlt: "Player 1", playerName: "you", playerScoreId: "game-player-left-score" },
     { playerLogo: "./assets/cpu.svg", playeLogoId: "game-player-icon-right", playerLogoAlt: "CPU", playerName: "cpu", playerScoreId: "game-player-right-score" },
@@ -73,5 +75,44 @@ const playerCpuPageDetails: GamePageInterface = {
   gameTimerId: "game-player-time",
 };
 
-const playerCpuObject = new GamePageClass(playerCpuPageDetails.pageId, playerCpuPageDetails.menuButtonId, playerCpuPageDetails.restartButtonId, playerCpuPageDetails.playerDetails, playerCpuPageDetails.gamePlayerTurnId, playerCpuPageDetails.gameTimerId);
+const playerCpuObject = new GamePageClass(playerCpuPageDetails.pageId, playerCpuPageDetails.menuButtonFunction, playerCpuPageDetails.restartButtonFunction, playerCpuPageDetails.playerDetails, playerCpuPageDetails.gamePlayerTurnId, playerCpuPageDetails.gameTimerId);
 playerCpuObject.render();
+
+const menuButtonDetails: { buttonText: string; buttonFunction: () => void }[] = [
+  { buttonText: "continue game", buttonFunction: () => (document.getElementById("menu-section")!.style.display = "none") },
+  { buttonText: "restart", buttonFunction: () => {} },
+  {
+    buttonText: "quit game",
+    buttonFunction: () => {
+      document.getElementById("menu-section")!.style.display = "none";
+      showSections("landing-section");
+    },
+  },
+];
+
+menuButtonDetails.forEach(({ buttonText, buttonFunction }) => {
+  const newButtonObject = new MenuButtonClass(buttonText, buttonFunction);
+  newButtonObject.render();
+});
+
+const formSelectDetails: { selectId: string; selectTopic: string; optionDetails: { optionValue: string; optionIcon: string; optionText: string }[] }[] = [
+  {
+    selectId: "player-round",
+    selectTopic: "Please select # of rounds",
+    optionDetails: [
+      { optionValue: "1", optionIcon: "1️⃣", optionText: "One Round" },
+      { optionValue: "2", optionIcon: "2️⃣", optionText: "Two Rounds" },
+      { optionValue: "3", optionIcon: "3️⃣", optionText: "Three Rounds" },
+      { optionValue: "4", optionIcon: "4️⃣", optionText: "Four Rounds" },
+      { optionValue: "5", optionIcon: "5️⃣", optionText: "Five Rounds" },
+      { optionValue: "unlimited", optionIcon: "♾️", optionText: "Unlimited Rounds" },
+    ],
+  },
+];
+
+formSelectDetails.forEach(({ selectId, selectTopic, optionDetails }) => {
+  const newSelectObject = new FormSelectClass(selectId, selectTopic, optionDetails);
+  newSelectObject.render();
+})
+
+document.getElementById("game-create-button")?.addEventListener("click", () => showSections("landing-section"))
