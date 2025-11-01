@@ -5,6 +5,11 @@ import { showSections } from "./utils/showSections";
 import { GamePageClass } from "./components/GamePageClass";
 import { MenuButtonClass } from "./components/MenuButtonClass";
 import { FormSelectClass } from "./components/FormSelectClass";
+import { gameFunctionality } from "./utils/gameFunctionality";
+import { styleColumnElements } from "./utils/styleColumnElement";
+
+const currentPage = sessionStorage.getItem("CURRENT_PAGE") || "landing-section";
+showSections(currentPage);
 
 type ButtonType = {
   text: string;
@@ -13,16 +18,17 @@ type ButtonType = {
   image?: string;
   alt?: string;
   textStyle?: string;
+  buttonFunction?: () => void;
 };
 
 const buttonsDetails: ButtonType[] = [
-  { text: "player vs cpu", backgroundStyle: "#FF5A84", functionValue: "player-cpu-section", image: "./assets/player-vs-cpu.svg", alt: "Player CPU", textStyle: "#FFFFFF" },
+  { text: "player vs cpu", backgroundStyle: "#FF5A84", functionValue: "player-cpu-section", image: "./assets/player-vs-cpu.svg", alt: "Player CPU", textStyle: "#FFFFFF", buttonFunction: gameFunctionality },
   { text: "player vs player", backgroundStyle: "#FFD35A", functionValue: "player-player-section", image: "./assets/player-vs-player.svg", alt: "Player Player" },
   { text: "game rules", backgroundStyle: "#FFFFFF", functionValue: "rules-section" },
 ];
 
 buttonsDetails.forEach((button: ButtonType): void => {
-  const buttonElement: ButtonClass = new ButtonClass(button.text, button.backgroundStyle, button.functionValue, button.image, button.alt, button.textStyle);
+  const buttonElement: ButtonClass = new ButtonClass(button.text, button.backgroundStyle, button.functionValue, button.image, button.alt, button.textStyle, button.buttonFunction);
   buttonElement.render();
 });
 
@@ -116,3 +122,7 @@ formSelectDetails.forEach(({ selectId, selectTopic, optionDetails }) => {
 })
 
 document.getElementById("game-create-button")?.addEventListener("click", () => showSections("landing-section"))
+
+window.addEventListener("load", () => {
+  if (currentPage === "player-cpu-section") styleColumnElements();
+})

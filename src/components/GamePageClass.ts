@@ -65,6 +65,7 @@ export class GamePageClass {
     for (let i = 0; i < 7 * 6; i++) {
       const div = document.createElement("div");
       div.setAttribute("class", "game-board-hole");
+      div.setAttribute("data-state", `column-${(i % 7) + 1}`);
 
       boardDiv.append(div);
     }

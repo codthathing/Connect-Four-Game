@@ -1,4 +1,6 @@
 export const showSections = (section: string) => {
+  sessionStorage.setItem("CURRENT_PAGE", section);
+
   const rulesSection = document.querySelector("#rules-section") as HTMLDivElement;
   const landingSection = document.querySelector("#landing-section") as HTMLDivElement;
   const playerPlayerSection = document.querySelector("#player-player-section") as HTMLDivElement;

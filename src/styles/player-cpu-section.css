@@ -91,6 +91,94 @@
   cursor: pointer;
 }
 
+div[data-state^="column-"].current-top {
+  background-color: #A259FF;
+  position: relative;
+}
+
+#player-column-marker {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+div[data-state="column-1"].column-1 {
+  animation: column1fade 1.5s ease-in-out 250ms 2;
+}
+
+@keyframes column1fade {
+  50% {
+    background-color: palevioletred;
+    opacity: 0.6;
+  }
+}
+
+div[data-state="column-2"].column-2 {
+  animation: column2fade 1.5s ease-in-out 250ms 2;
+}
+
+@keyframes column2fade {
+  50% {
+    background-color: red;
+    opacity: 0.6;
+  }
+}
+
+div[data-state="column-3"].column-3 {
+  animation: column3fade 1.5s ease-in-out 250ms 2;
+}
+
+@keyframes column3fade {
+  50% {
+    background-color: orangered;
+    opacity: 0.6;
+  }
+}
+
+div[data-state="column-4"].column-4 {
+  animation: column4fade 1.5s ease-in-out 250ms 2;
+}
+
+@keyframes column4fade {
+  50% {
+    background-color: limegreen;
+    opacity: 0.6;
+  }
+}
+
+div[data-state="column-5"].column-5 {
+  animation: column5fade 1.5s ease-in-out 250ms 2;
+}
+
+@keyframes column5fade {
+  50% {
+    background-color: darkgreen;
+    opacity: 0.6;
+  }
+}
+
+div[data-state="column-6"].column-6 {
+  animation: column6fade 1.5s ease-in-out 250ms 2;
+}
+
+@keyframes column6fade {
+  50% {
+    background-color: turquoise;
+    opacity: 0.6;
+  }
+}
+
+div[data-state="column-7"].column-7 {
+  animation: column7fade 1.5s ease-in-out 250ms 2;
+}
+
+@keyframes column7fade {
+  50% {
+    background-color: blue;
+  }
+}
+
 .game-timer-div {
   display: flex;
   flex-direction: column;
@@ -181,6 +269,11 @@
     gap: 0.5rem;
   }
 
+  #player-column-marker {
+    width: 1.5rem;
+    top: -2.15rem;
+  }
+
   .game-timer-div {
     padding: 2.25rem 3rem;
     gap: 0.5rem 0;
@@ -253,6 +346,11 @@
     width: 3rem;
   }
 
+  #player-column-marker {
+    width: 2.25rem;
+    top: -4.125rem;
+  }
+
   .game-timer-div {
     padding: 3rem 4rem;
     gap: 0.5rem 0;
@@ -314,6 +412,11 @@
 
   .game-board-player {
     gap: 1rem;
+  }
+
+  #player-column-marker {
+    width: 2rem;
+    top: -3.35rem;
   }
 
   .game-timer-div {
