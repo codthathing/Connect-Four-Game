@@ -126,3 +126,15 @@ document.getElementById("game-create-button")?.addEventListener("click", () => s
 window.addEventListener("load", () => {
   if (currentPage === "player-cpu-section") styleColumnElements();
 })
+
+
+function calculateCord(n: number) {
+  const left = n - 1;
+  const right = n + 1;
+  const bottom = n + 7;
+  const bottomLeft = n + 6;
+  const bottomRight = n + 8;
+  const top = n - 7;
+  const topLeft = n - 8;
+  const topRight = n - 6;
+}
