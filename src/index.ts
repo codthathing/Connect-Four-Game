@@ -1,4 +1,3 @@
-import "./styles/style.css";
 import { ButtonClass } from "./components/ButtonClass";
 import { RulesClass } from "./components/RulesClass";
 import { showSections } from "./utils/showSections";
@@ -6,7 +5,6 @@ import { GamePageClass } from "./components/GamePageClass";
 import { MenuButtonClass } from "./components/MenuButtonClass";
 import { FormSelectClass } from "./components/FormSelectClass";
 import { gameFunctionality } from "./utils/gameFunctionality";
-import { styleColumnElements } from "./utils/styleColumnElement";
 
 const currentPage = sessionStorage.getItem("CURRENT_PAGE") || "landing-section";
 showSections(currentPage);
@@ -22,13 +20,13 @@ type ButtonType = {
 };
 
 const buttonsDetails: ButtonType[] = [
-  { text: "player vs cpu", backgroundStyle: "#FF5A84", functionValue: "player-cpu-section", image: "./assets/player-vs-cpu.svg", alt: "Player CPU", textStyle: "#FFFFFF", buttonFunction: gameFunctionality },
+  { text: "player vs cpu", backgroundStyle: "#FF5A84", functionValue: "player-cpu-section", image: "./assets/player-vs-cpu.svg", alt: "Player CPU", textStyle: "#FFFFFF", buttonFunction: () => gameFunctionality("you") },
   { text: "player vs player", backgroundStyle: "#FFD35A", functionValue: "player-player-section", image: "./assets/player-vs-player.svg", alt: "Player Player" },
   { text: "game rules", backgroundStyle: "#FFFFFF", functionValue: "rules-section" },
 ];
 
-buttonsDetails.forEach((button: ButtonType): void => {
-  const buttonElement: ButtonClass = new ButtonClass(button.text, button.backgroundStyle, button.functionValue, button.image, button.alt, button.textStyle, button.buttonFunction);
+buttonsDetails.forEach(({ text, backgroundStyle, functionValue, image, alt, textStyle, buttonFunction }): void => {
+  const buttonElement: ButtonClass = new ButtonClass(text, backgroundStyle, functionValue, image, alt, textStyle, buttonFunction);
   buttonElement.render();
 });
 
@@ -65,6 +63,7 @@ interface GamePageInterface {
   menuButtonFunction: () => void;
   restartButtonFunction: () => void;
   playerDetails: { playerLogo: string; playeLogoId: string; playerLogoAlt: string; playerName: string; playerScoreId: string }[];
+  gameTimerDivId: string;
   gamePlayerTurnId: string;
   gameTimerId: string;
 }
@@ -77,11 +76,12 @@ const playerCpuPageDetails: GamePageInterface = {
     { playerLogo: "./assets/player-one.svg", playeLogoId: "game-player-icon-left", playerLogoAlt: "Player 1", playerName: "you", playerScoreId: "game-player-left-score" },
     { playerLogo: "./assets/cpu.svg", playeLogoId: "game-player-icon-right", playerLogoAlt: "CPU", playerName: "cpu", playerScoreId: "game-player-right-score" },
   ],
+  gameTimerDivId: "player-cpu-timer-div",
   gamePlayerTurnId: "game-player-turn",
   gameTimerId: "game-player-time",
 };
 
-const playerCpuObject = new GamePageClass(playerCpuPageDetails.pageId, playerCpuPageDetails.menuButtonFunction, playerCpuPageDetails.restartButtonFunction, playerCpuPageDetails.playerDetails, playerCpuPageDetails.gamePlayerTurnId, playerCpuPageDetails.gameTimerId);
+const playerCpuObject = new GamePageClass(playerCpuPageDetails.pageId, playerCpuPageDetails.menuButtonFunction, playerCpuPageDetails.restartButtonFunction, playerCpuPageDetails.playerDetails, playerCpuPageDetails.gameTimerDivId, playerCpuPageDetails.gamePlayerTurnId, playerCpuPageDetails.gameTimerId);
 playerCpuObject.render();
 
 const menuButtonDetails: { buttonText: string; buttonFunction: () => void }[] = [
@@ -119,22 +119,10 @@ const formSelectDetails: { selectId: string; selectTopic: string; optionDetails:
 formSelectDetails.forEach(({ selectId, selectTopic, optionDetails }) => {
   const newSelectObject = new FormSelectClass(selectId, selectTopic, optionDetails);
   newSelectObject.render();
-})
+});
 
-document.getElementById("game-create-button")?.addEventListener("click", () => showSections("landing-section"))
+document.getElementById("game-create-button")?.addEventListener("click", () => showSections("landing-section"));
 
 window.addEventListener("load", () => {
-  if (currentPage === "player-cpu-section") styleColumnElements();
-})
-
-
-function calculateCord(n: number) {
-  const left = n - 1;
-  const right = n + 1;
-  const bottom = n + 7;
-  const bottomLeft = n + 6;
-  const bottomRight = n + 8;
-  const top = n - 7;
-  const topLeft = n - 8;
-  const topRight = n - 6;
-}
+  if (currentPage === "player-cpu-section") gameFunctionality("you");
+});

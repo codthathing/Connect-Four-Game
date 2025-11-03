@@ -91,6 +91,14 @@
   cursor: pointer;
 }
 
+div[data-state^="column-"].player-hole-class {
+  background-color: #FF5A84 !important;
+}
+
+div[data-state^="column-"].cpu-hole-class {
+  background-color: #FFD35A !important;
+}
+
 div[data-state^="column-"].current-top {
   background-color: #A259FF;
   position: relative;
@@ -190,6 +198,16 @@ div[data-state="column-7"].column-7 {
   right: 0;
   color: white;
   text-transform: uppercase;
+}
+
+#player-cpu-timer-div.player-class {
+  color: white;
+  background-image: url('../../public/assets/turn-background-red.svg');
+}
+
+#player-cpu-timer-div.cpu-class {
+  color: black;
+  background-image: url('../../public/assets/turn-background-yellow.svg');
 }
 
 .gamer-timer-count {

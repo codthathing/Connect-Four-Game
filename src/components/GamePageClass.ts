@@ -1,5 +1,5 @@
 export class GamePageClass {
-  constructor(private pageId: string, private menuButtonFunction: () => void, private restartButtonFunction: () => void, private playerDetails: { playerLogo: string; playeLogoId: string; playerLogoAlt: string; playerName: string; playerScoreId: string }[], private gamePlayerTurnId: string, private gameTimerId: string) {}
+  constructor(private pageId: string, private menuButtonFunction: () => void, private restartButtonFunction: () => void, private playerDetails: { playerLogo: string; playeLogoId: string; playerLogoAlt: string; playerName: string; playerScoreId: string }[], private gameTimerDivId: string, private gamePlayerTurnId: string, private gameTimerId: string) {}
 
   private renderPage(param: [HTMLHeadElement, HTMLDivElement, HTMLDivElement]) {
     const pageDiv = document.querySelector(`#${this.pageId}`) as HTMLDivElement;
@@ -75,17 +75,18 @@ export class GamePageClass {
 
     const timerDiv = document.createElement("div");
     timerDiv.setAttribute("class", "game-timer-div");
-    timerDiv.setAttribute("style", "background: url('./assets/turn-background-red.svg'); background-repeat: no-repeat; background-position: center; background-size: contain;");
+    timerDiv.setAttribute("id", this.gameTimerDivId);
+    timerDiv.setAttribute("style", "background-repeat: no-repeat; background-position: center; background-size: contain;");
 
     const p = document.createElement("p");
     p.setAttribute("class", "game-timer-topic");
     p.setAttribute("id", this.gamePlayerTurnId);
-    p.innerText = "player 1's turn";
+    p.innerText = "your turn";
 
     const h1 = document.createElement("h1");
     h1.setAttribute("class", "gamer-timer-count");
     h1.setAttribute("id", this.gameTimerId);
-    h1.innerText = "6s";
+    h1.innerText = "30s";
 
     timerDiv.append(p, h1);
     section.append(boardMain, timerDiv);
