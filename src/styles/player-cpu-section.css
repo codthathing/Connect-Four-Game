@@ -251,12 +251,10 @@ div[data-state="column-7"].column-7 {
 
 #player-cpu-timer-div.player-class {
   color: white;
-  background-image: url('../../public/assets/turn-background-red.svg');
 }
 
 #player-cpu-timer-div.cpu-class {
   color: black;
-  background-image: url('../../public/assets/turn-background-yellow.svg');
 }
 
 #player-cpu-timer-div.play-again-class {

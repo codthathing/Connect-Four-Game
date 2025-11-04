@@ -146,6 +146,7 @@ function updateGameDetails() {
   document.getElementById("game-player-turn")!.innerText = currentPlayerDetails.text;
   document.getElementById("player-cpu-timer-div")!.classList.remove(currentPlayer === "you" ? "cpu-class" : "player-class");
   document.getElementById("player-cpu-timer-div")!.classList.add(currentPlayerDetails.class);
+  document.getElementById("player-cpu-timer-div")!.style.backgroundImage = `url('./assets/turn-background-${currentPlayer === "you" ? "red" : "yellow"}.svg')`;
 }
 
 function restartGame() {

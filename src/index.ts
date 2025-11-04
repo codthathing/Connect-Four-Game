@@ -1,3 +1,4 @@
+import "./style.css";
 import { ButtonClass } from "./components/ButtonClass";
 import { RulesClass } from "./components/RulesClass";
 import { showSections } from "./utils/showSections";
