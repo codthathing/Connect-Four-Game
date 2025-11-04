@@ -91,12 +91,61 @@
   cursor: pointer;
 }
 
-div[data-state^="column-"].player-hole-class {
-  background-color: #FF5A84 !important;
+div[data-played="true"] {
+  position: relative;
 }
 
-div[data-state^="column-"].cpu-hole-class {
+div[data-played="true"].player-winner-holes::before {
+  content: "";
+  position: absolute;
+  border: 4px solid white;
+  width: 35%;
+  height: 35%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 100%;
+  z-index: 20;
+  animation: fade 2.3s ease-in-out 750ms infinite;
+  opacity: 0;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+div[data-played="true"].player-hole-class::after {
+  content: "";
+  border-radius: 100%;
+  position: absolute;
+  background-color: #FF5A84 !important;
+  box-shadow: 0 4px 0 #00000050 inset;
+  width: 100%;
+  height: 100%;
+  animation: dropin 0.5s, bounce 0.8s 0.3s cubic-bezier(0.28, 0.84, 0.42, 1);
+}
+
+div[data-played="true"].cpu-hole-class::after {
+  content: "";
+  border-radius: 100%;
+  position: absolute;
   background-color: #FFD35A !important;
+  box-shadow: 0 4px 0 #00000050 inset;
+  width: 100%;
+  height: 100%;
+  animation: dropin 0.5s, bounce 0.8s 0.3s cubic-bezier(0.28, 0.84, 0.42, 1);
 }
 
 div[data-state^="column-"].current-top {
@@ -191,7 +240,7 @@ div[data-state="column-7"].column-7 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 1.5rem;
+  border-radius: 0.75rem;
   width: fit-content;
   position: absolute;
   left: 0;
@@ -208,6 +257,36 @@ div[data-state="column-7"].column-7 {
 #player-cpu-timer-div.cpu-class {
   color: black;
   background-image: url('../../public/assets/turn-background-yellow.svg');
+}
+
+#player-cpu-timer-div.play-again-class {
+  background-color: white;
+  box-shadow: 0px 8px 0px black;
+  border: 3px solid black;
+  color: black;
+}
+
+#play-again-text {
+  font-weight: 500;
+}
+
+#play-again-inner-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#play-again-topic {
+  font-weight: bolder;
+}
+
+#play-again-button {
+  font-weight: 500;
+  border: none;
+  background-color: #5E2ED6;
+  color: white;
+  border-radius: 1.25rem;
+  cursor: pointer;
 }
 
 .gamer-timer-count {
@@ -292,10 +371,72 @@ div[data-state="column-7"].column-7 {
     top: -2.15rem;
   }
 
+  @keyframes dropin {
+    0% {
+      transform: translateY(-18.5rem);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+
+    10% {
+      transform: translateY(0);
+    }
+
+    30% {
+      transform: translateY(-1.5rem);
+    }
+
+    50% {
+      transform: translateY(0);
+    }
+
+    57% {
+      transform: translateY(-0.25rem);
+    }
+
+    64% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   .game-timer-div {
     padding: 2.25rem 3rem;
     gap: 0.5rem 0;
     margin: -0.75rem auto 0 auto;
+  }
+
+  #player-cpu-timer-div.play-again-class {
+    padding: 0.5rem 2.25rem;
+    gap: 0.15rem 0;
+  }
+
+  #play-again-text {
+    font-size: 0.5rem;
+  }
+
+  #play-again-inner-div {
+    gap: 0.05rem 0;
+  }
+
+  #play-again-topic {
+    font-size: 1.5rem;
+  }
+
+  #play-again-button {
+    font-size: 0.5rem;
+    padding: 0.35rem 0.75rem;
   }
 
   #player-footer {
@@ -369,10 +510,72 @@ div[data-state="column-7"].column-7 {
     top: -4.125rem;
   }
 
+  @keyframes dropin {
+    0% {
+      transform: translateY(-28.5rem);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+
+    10% {
+      transform: translateY(0);
+    }
+
+    30% {
+      transform: translateY(-1.75rem);
+    }
+
+    50% {
+      transform: translateY(0);
+    }
+
+    57% {
+      transform: translateY(-0.25rem);
+    }
+
+    64% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   .game-timer-div {
     padding: 3rem 4rem;
     gap: 0.5rem 0;
     margin: -1.5rem auto 0 auto;
+  }
+
+  #player-cpu-timer-div.play-again-class {
+    padding: 0.75rem 3.5rem;
+    gap: 0.15rem 0;
+  }
+
+  #play-again-text {
+    font-size: 1rem;
+  }
+
+  #play-again-inner-div {
+    gap: 0.05rem 0;
+  }
+
+  #play-again-topic {
+    font-size: 2.5rem;
+  }
+
+  #play-again-button {
+    font-size: 0.75rem;
+    padding: 0.65rem 1.35rem;
   }
 
   #player-footer {
@@ -437,10 +640,72 @@ div[data-state="column-7"].column-7 {
     top: -3.35rem;
   }
 
+  @keyframes dropin {
+    0% {
+      transform: translateY(-22.5rem);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+
+    10% {
+      transform: translateY(0);
+    }
+
+    30% {
+      transform: translateY(-1.85rem);
+    }
+
+    50% {
+      transform: translateY(0);
+    }
+
+    57% {
+      transform: translateY(-0.35rem);
+    }
+
+    64% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   .game-timer-div {
     padding: 3rem;
     gap: 0.5rem 0;
     margin: -1rem auto 0 auto;
+  }
+
+  #player-cpu-timer-div.play-again-class {
+    padding: 0.75rem 3rem;
+    gap: 0.15rem 0;
+  }
+
+  #play-again-text {
+    font-size: 0.75rem;
+  }
+
+  #play-again-inner-div {
+    gap: 0.05rem 0;
+  }
+
+  #play-again-topic {
+    font-size: 2.5rem;
+  }
+
+  #play-again-button {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
   }
 
   #player-footer {

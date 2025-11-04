@@ -4,7 +4,7 @@ import { showSections } from "./utils/showSections";
 import { GamePageClass } from "./components/GamePageClass";
 import { MenuButtonClass } from "./components/MenuButtonClass";
 import { FormSelectClass } from "./components/FormSelectClass";
-import { gameFunctionality } from "./utils/gameFunctionality";
+import { exitButtonFunction, gameFunctionality, restartButtonFunction } from "./utils/gameFunctionality";
 
 const currentPage = sessionStorage.getItem("CURRENT_PAGE") || "landing-section";
 showSections(currentPage);
@@ -71,7 +71,7 @@ interface GamePageInterface {
 const playerCpuPageDetails: GamePageInterface = {
   pageId: "player-cpu-section",
   menuButtonFunction: () => (document.getElementById("menu-section")!.style.display = "flex"),
-  restartButtonFunction: () => {},
+  restartButtonFunction: () => restartButtonFunction("you"),
   playerDetails: [
     { playerLogo: "./assets/player-one.svg", playeLogoId: "game-player-icon-left", playerLogoAlt: "Player 1", playerName: "you", playerScoreId: "game-player-left-score" },
     { playerLogo: "./assets/cpu.svg", playeLogoId: "game-player-icon-right", playerLogoAlt: "CPU", playerName: "cpu", playerScoreId: "game-player-right-score" },
@@ -86,12 +86,18 @@ playerCpuObject.render();
 
 const menuButtonDetails: { buttonText: string; buttonFunction: () => void }[] = [
   { buttonText: "continue game", buttonFunction: () => (document.getElementById("menu-section")!.style.display = "none") },
-  { buttonText: "restart", buttonFunction: () => {} },
+  {
+    buttonText: "restart",
+    buttonFunction: () => {
+      document.getElementById("menu-section")!.style.display = "none";
+      restartButtonFunction("you");
+    },
+  },
   {
     buttonText: "quit game",
     buttonFunction: () => {
       document.getElementById("menu-section")!.style.display = "none";
-      showSections("landing-section");
+      exitButtonFunction();
     },
   },
 ];

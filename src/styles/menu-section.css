@@ -9,6 +9,7 @@
   align-items: center;
   z-index: 10;
   background-color: #00000080;
+  z-index: 30;
 }
 
 #menu-main {
