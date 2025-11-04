@@ -143,6 +143,7 @@ function holeHoverEffect() {
 function updateGameDetails() {
   const currentPlayerDetails: { text: string; class: string; holeClass: string } = currentPlayersDetails[currentPlayer];
 
+
   document.getElementById("game-player-turn")!.innerText = currentPlayerDetails.text;
   document.getElementById("player-cpu-timer-div")!.classList.remove(currentPlayer === "you" ? "cpu-class" : "player-class");
   document.getElementById("player-cpu-timer-div")!.classList.add(currentPlayerDetails.class);
@@ -150,6 +151,8 @@ function updateGameDetails() {
 }
 
 function restartGame() {
+  document.getElementById("player-footer")!.style.backgroundColor = "#5E2ED6";
+
   const timerDiv = document.querySelector("#player-cpu-timer-div") as HTMLDivElement;
   timerDiv.classList.remove("cpu-class", "player-class");
   timerDiv.style.backgroundImage = "";
@@ -208,10 +211,12 @@ export function exitButtonFunction() {
 }
 
 function updatePlayAgainDiv(winnerText: "you" | "cpu" | "") {
+  document.getElementById("player-footer")!.style.backgroundColor = winnerText === "cpu" ? "#FFD35A" : "#FF5A84";
+
   const timerDiv = document.querySelector("#player-cpu-timer-div") as HTMLDivElement;
   timerDiv.classList.remove("cpu-class", "player-class");
   timerDiv.style.backgroundImage = "";
-  
+
   if (document.querySelector("#game-player-turn")) timerDiv.removeChild(document.querySelector("#game-player-turn") as HTMLParagraphElement);
   if (document.querySelector("#game-player-time")) timerDiv.removeChild(document.querySelector("#game-player-time") as HTMLHeadingElement);
   timerDiv.classList.add("play-again-class");
