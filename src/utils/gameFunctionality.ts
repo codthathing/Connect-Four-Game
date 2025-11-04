@@ -152,6 +152,7 @@ function updateGameDetails() {
 function restartGame() {
   const timerDiv = document.querySelector("#player-cpu-timer-div") as HTMLDivElement;
   timerDiv.classList.remove("cpu-class", "player-class");
+  timerDiv.style.backgroundImage = "";
 
   const holeDivs = document.querySelectorAll("div[data-state^='column-']");
   holeDivs.forEach((div) => {
@@ -209,6 +210,8 @@ export function exitButtonFunction() {
 function updatePlayAgainDiv(winnerText: "you" | "cpu" | "") {
   const timerDiv = document.querySelector("#player-cpu-timer-div") as HTMLDivElement;
   timerDiv.classList.remove("cpu-class", "player-class");
+  timerDiv.style.backgroundImage = "";
+  
   if (document.querySelector("#game-player-turn")) timerDiv.removeChild(document.querySelector("#game-player-turn") as HTMLParagraphElement);
   if (document.querySelector("#game-player-time")) timerDiv.removeChild(document.querySelector("#game-player-time") as HTMLHeadingElement);
   timerDiv.classList.add("play-again-class");
