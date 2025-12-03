@@ -1,11 +1,11 @@
-import "./style.css";
 import { ButtonClass } from "./components/ButtonClass";
 import { RulesClass } from "./components/RulesClass";
 import { showSections } from "./utils/showSections";
 import { GamePageClass } from "./components/GamePageClass";
 import { MenuButtonClass } from "./components/MenuButtonClass";
-import { FormSelectClass } from "./components/FormSelectClass";
+import { FormClass } from "./components/FormClass";
 import { exitButtonFunction, gameFunctionality, restartButtonFunction } from "./utils/gameFunctionality";
+import { showPlayerCpuSections } from "./utils/showPlayerCpuSections";
 
 const currentPage = sessionStorage.getItem("CURRENT_PAGE") || "landing-section";
 showSections(currentPage);
@@ -21,7 +21,7 @@ type ButtonType = {
 };
 
 const buttonsDetails: ButtonType[] = [
-  { text: "player vs cpu", backgroundStyle: "#FF5A84", functionValue: "player-cpu-section", image: "./assets/player-vs-cpu.svg", alt: "Player CPU", textStyle: "#FFFFFF", buttonFunction: () => gameFunctionality("you") },
+  { text: "player vs cpu", backgroundStyle: "#FF5A84", functionValue: "player-cpu-section", image: "./assets/player-vs-cpu.svg", alt: "Player CPU", textStyle: "#FFFFFF", buttonFunction: () => showPlayerCpuSections("player-cpu-form") },
   { text: "player vs player", backgroundStyle: "#FFD35A", functionValue: "player-player-section", image: "./assets/player-vs-player.svg", alt: "Player Player" },
   { text: "game rules", backgroundStyle: "#FFFFFF", functionValue: "rules-section" },
 ];
@@ -61,6 +61,7 @@ rulesButton.onclick = () => showSections("landing-section");
 
 interface GamePageInterface {
   pageId: string;
+  mainId: string;
   menuButtonFunction: () => void;
   restartButtonFunction: () => void;
   playerDetails: { playerLogo: string; playeLogoId: string; playerLogoAlt: string; playerName: string; playerScoreId: string }[];
@@ -71,6 +72,7 @@ interface GamePageInterface {
 
 const playerCpuPageDetails: GamePageInterface = {
   pageId: "player-cpu-section",
+  mainId: "player-cpu-section-main",
   menuButtonFunction: () => (document.getElementById("menu-section")!.style.display = "flex"),
   restartButtonFunction: () => restartButtonFunction("you"),
   playerDetails: [
@@ -82,7 +84,7 @@ const playerCpuPageDetails: GamePageInterface = {
   gameTimerId: "game-player-time",
 };
 
-const playerCpuObject = new GamePageClass(playerCpuPageDetails.pageId, playerCpuPageDetails.menuButtonFunction, playerCpuPageDetails.restartButtonFunction, playerCpuPageDetails.playerDetails, playerCpuPageDetails.gameTimerDivId, playerCpuPageDetails.gamePlayerTurnId, playerCpuPageDetails.gameTimerId);
+const playerCpuObject = new GamePageClass(playerCpuPageDetails.pageId, playerCpuPageDetails.mainId, playerCpuPageDetails.menuButtonFunction, playerCpuPageDetails.restartButtonFunction, playerCpuPageDetails.playerDetails, playerCpuPageDetails.gameTimerDivId, playerCpuPageDetails.gamePlayerTurnId, playerCpuPageDetails.gameTimerId);
 playerCpuObject.render();
 
 const menuButtonDetails: { buttonText: string; buttonFunction: () => void }[] = [
@@ -99,6 +101,7 @@ const menuButtonDetails: { buttonText: string; buttonFunction: () => void }[] = 
     buttonFunction: () => {
       document.getElementById("menu-section")!.style.display = "none";
       exitButtonFunction();
+      if (currentPage === "player-cpu-section") sessionStorage.removeItem("CURRENT_PLAYER_CPU_SECTION");
     },
   },
 ];
@@ -108,28 +111,59 @@ menuButtonDetails.forEach(({ buttonText, buttonFunction }) => {
   newButtonObject.render();
 });
 
-const formSelectDetails: { selectId: string; selectTopic: string; optionDetails: { optionValue: string; optionIcon: string; optionText: string }[] }[] = [
+const pageFormDetails: { pageId: string; mainId: string; backButtonFunction: () => void; selects: { selectId: string; selectOptions: { optionValue: string; optionIcon?: string; optionText: string }[] }[]; buttonText: string; buttonFunction?: () => void; inputs?: { type: string; inputId: string; placeholder: string }[] }[] = [
   {
-    selectId: "player-round",
-    selectTopic: "Please select # of rounds",
-    optionDetails: [
-      { optionValue: "1", optionIcon: "1️⃣", optionText: "One Round" },
-      { optionValue: "2", optionIcon: "2️⃣", optionText: "Two Rounds" },
-      { optionValue: "3", optionIcon: "3️⃣", optionText: "Three Rounds" },
-      { optionValue: "4", optionIcon: "4️⃣", optionText: "Four Rounds" },
-      { optionValue: "5", optionIcon: "5️⃣", optionText: "Five Rounds" },
-      { optionValue: "unlimited", optionIcon: "♾️", optionText: "Unlimited Rounds" },
+    pageId: "player-player-section",
+    mainId: "player-player-form-main",
+    backButtonFunction: () => {},
+    selects: [
+      {
+        selectId: "player-round",
+        selectOptions: [
+          { optionValue: "", optionText: "Please select # of rounds" },
+          { optionValue: "1", optionIcon: "1️⃣", optionText: "One Round" },
+          { optionValue: "2", optionIcon: "2️⃣", optionText: "Two Rounds" },
+          { optionValue: "3", optionIcon: "3️⃣", optionText: "Three Rounds" },
+          { optionValue: "4", optionIcon: "4️⃣", optionText: "Four Rounds" },
+          { optionValue: "5", optionIcon: "5️⃣", optionText: "Five Rounds" },
+          { optionValue: "unlimited", optionIcon: "♾️", optionText: "Unlimited Rounds" },
+        ],
+      },
     ],
+    buttonText: "create game",
+    inputs: [{ type: "text", inputId: "", placeholder: "Enter your name" }],
+  },
+  {
+    pageId: "player-cpu-section",
+    mainId: "player-cpu-form-main",
+    backButtonFunction: () => sessionStorage.removeItem("CURRENT_PLAYER_CPU_SECTION"),
+    selects: [
+      {
+        selectId: "game-difficulty-level",
+        selectOptions: [
+          { optionValue: "", optionText: "Seect game difficulty level" },
+          { optionValue: "easy", optionIcon: "🪶", optionText: "Easy" },
+          { optionValue: "regular", optionIcon: "🛡️", optionText: "Regular" },
+          { optionValue: "hard", optionIcon: "🔥", optionText: "Hard" },
+        ],
+      },
+    ],
+    buttonText: "start game",
+    buttonFunction: () => {
+      showPlayerCpuSections("player-cpu-section");
+      gameFunctionality("you");
+    },
   },
 ];
 
-formSelectDetails.forEach(({ selectId, selectTopic, optionDetails }) => {
-  const newSelectObject = new FormSelectClass(selectId, selectTopic, optionDetails);
+pageFormDetails.forEach(({ pageId, mainId, backButtonFunction, selects, buttonText, buttonFunction, inputs }) => {
+  const newSelectObject = new FormClass(pageId, mainId, backButtonFunction, selects, buttonText, buttonFunction, inputs);
   newSelectObject.render();
 });
 
-document.getElementById("game-create-button")?.addEventListener("click", () => showSections("landing-section"));
+if (currentPage === "player-cpu-section") {
+  const currentSection = sessionStorage.getItem("CURRENT_PLAYER_CPU_SECTION")!;
 
-window.addEventListener("load", () => {
-  if (currentPage === "player-cpu-section") gameFunctionality("you");
-});
+  showPlayerCpuSections(currentSection);
+  if (currentSection === "player-cpu-section") gameFunctionality("you");
+}

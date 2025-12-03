@@ -1,12 +1,14 @@
 export class GamePageClass {
-  constructor(private pageId: string, private menuButtonFunction: () => void, private restartButtonFunction: () => void, private playerDetails: { playerLogo: string; playeLogoId: string; playerLogoAlt: string; playerName: string; playerScoreId: string }[], private gameTimerDivId: string, private gamePlayerTurnId: string, private gameTimerId: string) {}
-
-  private renderPage(param: [HTMLHeadElement, HTMLDivElement, HTMLDivElement]) {
-    const pageDiv = document.querySelector(`#${this.pageId}`) as HTMLDivElement;
-    pageDiv.append(...param);
-  }
+  constructor(private pageId: string, private mainId: string, private menuButtonFunction: () => void, private restartButtonFunction: () => void, private playerDetails: { playerLogo: string; playeLogoId: string; playerLogoAlt: string; playerName: string; playerScoreId: string }[], private gameTimerDivId: string, private gamePlayerTurnId: string, private gameTimerId: string) {}
 
   render() {
+    const main = document.createElement("main");
+    main.setAttribute("class", "game-player-section-main");
+    main.setAttribute("id", this.mainId);
+
+    const div = document.createElement("div");
+    div.setAttribute("class", "player-cpu-section-div");
+
     const header = document.createElement("header");
     header.setAttribute("class", "game-play-header");
 
@@ -95,6 +97,8 @@ export class GamePageClass {
     const footerDiv = document.createElement("div");
     footerDiv.setAttribute("id", "player-footer");
 
-    this.renderPage([header, gameMain, footerDiv]);
+    div.append(header, gameMain, footerDiv);
+    main.append(div);
+    document.getElementById(this.pageId)?.append(main);
   }
 }

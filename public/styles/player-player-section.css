@@ -5,7 +5,7 @@
   height: 100%;
 }
 
-#player-create-main {
+.player-create-main {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -15,31 +15,31 @@
   width: fit-content;
 }
 
-#player-create-div {
+.player-create-div {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
 }
 
-#player-form {
+.player-form {
   display: flex;
   flex-direction: column;
 }
 
-#player-form-div {
+.player-form-div {
   display: flex;
   flex-direction: column;
 }
 
-#player-form-name {
+.player-form-input-field {
   border: none;
   outline: none;
   border-radius: 0.5rem;
   border: 2px solid #ddd;
 }
 
-#player-form-button {
+.player-form-button {
   background-color: #FF5A84;
   color: white;
   border: none;
@@ -156,22 +156,22 @@ selectedcontent {
     margin: 2rem 0 0 2rem;
   }
 
-  #player-form {
+  .player-form {
     gap: 1.5rem 0;
     width: 80%;
     margin-top: -10rem;
   }
 
-  #player-form-div {
+  .player-form-div {
     gap: 0.75rem 0;
   }
 
-  #player-form-name {
+  .player-form-input-field {
     padding: 0.75rem 1rem;
     font-size: 0.75rem;
   }
 
-  #player-form-button {
+  .player-form-button {
     padding: 0.85rem 0;
     font-size: 0.75rem;
   }
@@ -203,22 +203,22 @@ selectedcontent {
     margin: 3rem 0 0 4rem;
   }
 
-  #player-form {
+  .player-form {
     gap: 4rem 0;
     width: 65%;
     margin-top: -12.5rem;
   }
 
-  #player-form-div {
+  .player-form-div {
     gap: 1.5rem 0;
   }
 
-  #player-form-name {
+  .player-form-input-field {
     padding: 1.25rem 1.75rem;
     font-size: 1.25rem;
   }
 
-  #player-form-button {
+  .player-form-button {
     padding: 1.35rem 0;
     font-size: 1.5rem;
   }
@@ -250,21 +250,21 @@ selectedcontent {
     margin: 2.5rem 0 0 4rem;
   }
 
-  #player-form {
+  .player-form {
     gap: 2.5rem 0;
     width: 20%;
     margin-top: -7.5rem;
   }
 
-  #player-form-div {
+  .player-form-div {
     gap: 1rem 0;
   }
 
-  #player-form-name {
+  .player-form-input-field {
     padding: 0.75rem 1rem;
   }
 
-  #player-form-button {
+  .player-form-button {
     padding: 1rem 0;
   }
 
