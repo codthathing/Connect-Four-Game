@@ -101,7 +101,10 @@ const menuButtonDetails: { buttonText: string; buttonFunction: () => void }[] = 
     buttonFunction: () => {
       document.getElementById("menu-section")!.style.display = "none";
       exitButtonFunction();
-      if (currentPage === "player-cpu-section") sessionStorage.removeItem("CURRENT_PLAYER_CPU_SECTION");
+      if (currentPage === "player-cpu-section") {
+        sessionStorage.removeItem("CURRENT_PLAYER_CPU_SECTION");
+        sessionStorage.removeItem("GAME_LEVEL");
+      }
     },
   },
 ];
@@ -110,6 +113,8 @@ menuButtonDetails.forEach(({ buttonText, buttonFunction }) => {
   const newButtonObject = new MenuButtonClass(buttonText, buttonFunction);
   newButtonObject.render();
 });
+
+let gameLevel: "easy" | "regular" | "hard" = (sessionStorage.getItem("GAME_LEVEL") as "easy" | "regular" | "hard") || "easy";
 
 const pageFormDetails: { pageId: string; mainId: string; backButtonFunction: () => void; selects: { selectId: string; selectOptions: { optionValue: string; optionIcon?: string; optionText: string }[] }[]; buttonText: string; buttonFunction?: () => void; inputs?: { type: string; inputId: string; placeholder: string }[] }[] = [
   {
@@ -141,7 +146,7 @@ const pageFormDetails: { pageId: string; mainId: string; backButtonFunction: () 
       {
         selectId: "game-difficulty-level",
         selectOptions: [
-          { optionValue: "", optionText: "Seect game difficulty level" },
+          { optionValue: "easy", optionText: "Select game difficulty level (default Easy)" },
           { optionValue: "easy", optionIcon: "🪶", optionText: "Easy" },
           { optionValue: "regular", optionIcon: "🛡️", optionText: "Regular" },
           { optionValue: "hard", optionIcon: "🔥", optionText: "Hard" },
@@ -151,7 +156,11 @@ const pageFormDetails: { pageId: string; mainId: string; backButtonFunction: () 
     buttonText: "start game",
     buttonFunction: () => {
       showPlayerCpuSections("player-cpu-section");
-      gameFunctionality("you");
+
+      gameLevel = (document.getElementById("game-difficulty-level-select") as HTMLSelectElement).value as "easy" | "regular" | "hard";
+      sessionStorage.setItem("GAME_LEVEL", gameLevel);
+
+      gameFunctionality("you", gameLevel);
     },
   },
 ];
@@ -165,5 +174,68 @@ if (currentPage === "player-cpu-section") {
   const currentSection = sessionStorage.getItem("CURRENT_PLAYER_CPU_SECTION")!;
 
   showPlayerCpuSections(currentSection);
-  if (currentSection === "player-cpu-section") gameFunctionality("you");
+  if (currentSection === "player-cpu-section") gameFunctionality("you", gameLevel);
+}
+
+const arrays = [[3], [1], [4], [6], [7]];
+
+function checkLastColumn(no: number) {
+  return no % 7 === 0 ? 7 : no % 7;
+}
+
+for (const array of arrays) {
+  if (1 > 1) {
+    const calculation = (checkLastColumn(array[0]) > checkLastColumn(array[1]) && "decrease") || (checkLastColumn(array[0]) < checkLastColumn(array[1]) && "increase") || (checkLastColumn(array[0]) === checkLastColumn(array[1]) && "equal");
+
+    let i = 0;
+
+    switch (calculation) {
+      case "decrease":
+        while (i < array.length) {
+          if (array[i + 1]) {
+            if (checkLastColumn(array[i]) - checkLastColumn(array[i + 1]) === 2) {
+              console.log((checkLastColumn(array[i]) + checkLastColumn(array[i + 1])) / 2);
+              break;
+            } else if (checkLastColumn(array[i]) - checkLastColumn(array[i + 1]) === 3) {
+              console.log(Array.from({ length: checkLastColumn(array[i]) - checkLastColumn(array[i + 1]) - 1 }, (_, j) => j + checkLastColumn(array[i + 1]) + 1));
+              break;
+            }
+          } else {
+            console.log(checkLastColumn(array[i]) - 1);
+            break;
+          }
+
+          i++;
+        }
+
+        break;
+      case "increase":
+        while (i < array.length) {
+          if (array[i + 1]) {
+            if (checkLastColumn(array[i + 1]) - checkLastColumn(array[i]) === 2) {
+              console.log((checkLastColumn(array[i]) + checkLastColumn(array[i + 1])) / 2);
+              break;
+            } else if (checkLastColumn(array[i + 1]) - checkLastColumn(array[i]) === 3) {
+              console.log(Array.from({ length: checkLastColumn(array[i + 1]) - checkLastColumn(array[i]) - 1 }, (_, j) => j + checkLastColumn(array[i]) + 1));
+              break;
+            }
+          } else {
+            console.log(checkLastColumn(array[i]) + 1);
+            break;
+          }
+
+          i++;
+        }
+
+        break;
+      case "equal":
+        console.log(checkLastColumn(array[0]));
+        break;
+    }
+  } else {
+    const columnValue = array[0];
+    if (checkLastColumn(columnValue) > 1) console.log(checkLastColumn(columnValue - 1));
+    if (checkLastColumn(columnValue) < 7) console.log(checkLastColumn(columnValue + 1));
+    console.log(checkLastColumn(columnValue + 7));
+  }
 }
