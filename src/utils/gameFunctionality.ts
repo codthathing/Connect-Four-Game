@@ -1,9 +1,9 @@
+import { determineCpuPlay } from "./cpuPlayerFunctionality";
 import { showSections } from "./showSections";
 
 let currentPlayer: "you" | "cpu";
 let lastGameStarter: "you" | "cpu";
 let gameLevel: "easy" | "regular" | "hard";
-let possibleWinnersArray: number[][] = [];
 const currentPlayersDetails: { you: { text: string; class: string; holeClass: string }; cpu: { text: string; class: string; holeClass: string } } = { you: { text: "your turn", class: "player-class", holeClass: "player-hole-class" }, cpu: { text: "cpu's turn", class: "cpu-class", holeClass: "cpu-hole-class" } };
 
 let playerScores = { you: 0, cpu: 0 };
@@ -31,20 +31,14 @@ function winnerConditions(matchingDivs: HTMLDivElement[], presentDiv: HTMLDivEle
     if (!condition) continue;
 
     const tempMatchingDivs: HTMLDivElement[] = [presentDiv];
-    const tempMatchingNos: number[] = [no];
 
     for (let i = 1; i <= 3; i++) {
       const nextElement = document.querySelector(`div[data-hole='${calculation(i)}']`) as HTMLDivElement;
 
       if (nextElement.hasAttribute("data-played") && presentDiv.getAttribute("data-type") === nextElement.getAttribute("data-type")) {
         tempMatchingDivs.push(nextElement);
-        tempMatchingNos.push(calculation(i));
       } else {
         break;
-      }
-
-      if (i >= 2 && gameLevel === "regular") {
-        possibleWinnersArray.push(tempMatchingNos);
       }
     }
 
@@ -73,7 +67,6 @@ function winnerConditions(matchingDivs: HTMLDivElement[], presentDiv: HTMLDivEle
 
 function checkWinner() {
   let presentMatchingDivs: HTMLDivElement[] = [];
-  possibleWinnersArray = [];
 
   for (const divNo of presentHoles) {
     if (presentMatchingDivs.length === 4) break;
@@ -86,56 +79,7 @@ function checkWinner() {
   return { presentMatchingDivs };
 }
 
-const presentHoles: number[] = [];
-
-function determineCpuPlay() {
-  switch (gameLevel) {
-    case "easy":
-      return Math.floor(Math.random() * 7) + 1;
-    case "regular":
-      if (presentHoles.length <= 1) {
-        return Math.floor(Math.random() * 7) + 1;
-      } else if (possibleWinnersArray.length === 0) {
-        const possibleNextStep: HTMLDivElement[][] = [];
-
-        for (const holeNumber of presentHoles) {
-          const possibleConditions = gameConditions(holeNumber);
-
-          const presentDiv = document.querySelector(`div[data-hole="${holeNumber}"]`) as HTMLDivElement;
-
-          for (const { condition, calculation } of possibleConditions) {
-            if (!condition || presentDiv.getAttribute("data-type") !== "cpu") continue;
-
-            const tempMatchingDivs: HTMLDivElement[] = [presentDiv];
-
-            for (let i = 1; i <= 3; i++) {
-              const nextElement = document.querySelector(`div[data-hole='${calculation(i)}']`) as HTMLDivElement;
-
-              if (nextElement.hasAttribute("data-played") && nextElement.getAttribute("data-type") === "cpu") {
-                tempMatchingDivs.push(nextElement);
-              } else if (nextElement.hasAttribute("data-played") && nextElement.getAttribute("data-type") !== "cpu") {
-                break;
-              }
-
-              if (i === 3) {
-                possibleNextStep.push(tempMatchingDivs);
-              }
-            }
-          }
-        }
-
-        const possibleStepsLongestLength = Math.max(...possibleNextStep.map((array) => array.length));
-        const longestPossibleSteps = possibleNextStep.filter((array) => array.length === possibleStepsLongestLength);
-
-        console.log(longestPossibleSteps);
-
-        return Math.floor(Math.random() * 7) + 1;
-      } else if (possibleWinnersArray.length >= 1) {
-      }
-    case "hard":
-      return 0;
-  }
-}
+let presentHoles: number[] = [];
 
 function colorNewHole(player: "you" | "cpu", columnDivs: NodeListOf<HTMLDivElement>) {
   const lastDivType: string = currentPlayersDetails[currentPlayer]["holeClass"];
@@ -144,7 +88,7 @@ function colorNewHole(player: "you" | "cpu", columnDivs: NodeListOf<HTMLDivEleme
 
   if (player === "cpu") {
     while (divsNotPlayed.length === 0) {
-      let newColumnNumber: number = determineCpuPlay();
+      let newColumnNumber: number = determineCpuPlay(gameLevel, presentHoles, gameConditions);
 
       const columnDivs: NodeListOf<HTMLDivElement> = document.querySelectorAll(`div[data-state="column-${newColumnNumber}"]`);
       divsNotPlayed = Array.from(columnDivs).filter((div) => !div.hasAttribute("data-played"));
@@ -215,6 +159,8 @@ function updateGameDetails() {
 
 function restartGame() {
   document.getElementById("player-footer")!.style.backgroundColor = "#5E2ED6";
+
+  presentHoles = [];
 
   const timerDiv = document.querySelector("#player-cpu-timer-div") as HTMLDivElement;
   timerDiv.classList.remove("cpu-class", "player-class");
@@ -341,7 +287,7 @@ function playGame() {
       }
 
       if (currentPlayer === "cpu" && i === 30 - cpuTime) {
-        let column: number = determineCpuPlay();
+        let column: number = determineCpuPlay(gameLevel, presentHoles, gameConditions);
         const columnDivs: NodeListOf<HTMLDivElement> = document.querySelectorAll(`div[data-state="column-${column}"]`);
 
         colorNewHole("cpu", columnDivs);

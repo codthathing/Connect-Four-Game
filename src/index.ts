@@ -146,21 +146,25 @@ const pageFormDetails: { pageId: string; mainId: string; backButtonFunction: () 
       {
         selectId: "game-difficulty-level",
         selectOptions: [
-          { optionValue: "easy", optionText: "Select game difficulty level (default Easy)" },
+          { optionValue: "", optionText: "Select game difficulty level" },
           { optionValue: "easy", optionIcon: "🪶", optionText: "Easy" },
           { optionValue: "regular", optionIcon: "🛡️", optionText: "Regular" },
-          { optionValue: "hard", optionIcon: "🔥", optionText: "Hard" },
+          // { optionValue: "hard", optionIcon: "🔥", optionText: "Hard" },
         ],
       },
     ],
     buttonText: "start game",
     buttonFunction: () => {
-      showPlayerCpuSections("player-cpu-section");
+      const inputLevel = (document.getElementById("game-difficulty-level-select") as HTMLSelectElement).value;
 
-      gameLevel = (document.getElementById("game-difficulty-level-select") as HTMLSelectElement).value as "easy" | "regular" | "hard";
-      sessionStorage.setItem("GAME_LEVEL", gameLevel);
+      if (inputLevel) {
+        showPlayerCpuSections("player-cpu-section");
 
-      gameFunctionality("you", gameLevel);
+        gameLevel = inputLevel as "easy" | "regular" | "hard";
+        sessionStorage.setItem("GAME_LEVEL", gameLevel);
+
+        gameFunctionality("you", gameLevel);
+      }
     },
   },
 ];
@@ -175,67 +179,4 @@ if (currentPage === "player-cpu-section") {
 
   showPlayerCpuSections(currentSection);
   if (currentSection === "player-cpu-section") gameFunctionality("you", gameLevel);
-}
-
-const arrays = [[3], [1], [4], [6], [7]];
-
-function checkLastColumn(no: number) {
-  return no % 7 === 0 ? 7 : no % 7;
-}
-
-for (const array of arrays) {
-  if (1 > 1) {
-    const calculation = (checkLastColumn(array[0]) > checkLastColumn(array[1]) && "decrease") || (checkLastColumn(array[0]) < checkLastColumn(array[1]) && "increase") || (checkLastColumn(array[0]) === checkLastColumn(array[1]) && "equal");
-
-    let i = 0;
-
-    switch (calculation) {
-      case "decrease":
-        while (i < array.length) {
-          if (array[i + 1]) {
-            if (checkLastColumn(array[i]) - checkLastColumn(array[i + 1]) === 2) {
-              console.log((checkLastColumn(array[i]) + checkLastColumn(array[i + 1])) / 2);
-              break;
-            } else if (checkLastColumn(array[i]) - checkLastColumn(array[i + 1]) === 3) {
-              console.log(Array.from({ length: checkLastColumn(array[i]) - checkLastColumn(array[i + 1]) - 1 }, (_, j) => j + checkLastColumn(array[i + 1]) + 1));
-              break;
-            }
-          } else {
-            console.log(checkLastColumn(array[i]) - 1);
-            break;
-          }
-
-          i++;
-        }
-
-        break;
-      case "increase":
-        while (i < array.length) {
-          if (array[i + 1]) {
-            if (checkLastColumn(array[i + 1]) - checkLastColumn(array[i]) === 2) {
-              console.log((checkLastColumn(array[i]) + checkLastColumn(array[i + 1])) / 2);
-              break;
-            } else if (checkLastColumn(array[i + 1]) - checkLastColumn(array[i]) === 3) {
-              console.log(Array.from({ length: checkLastColumn(array[i + 1]) - checkLastColumn(array[i]) - 1 }, (_, j) => j + checkLastColumn(array[i]) + 1));
-              break;
-            }
-          } else {
-            console.log(checkLastColumn(array[i]) + 1);
-            break;
-          }
-
-          i++;
-        }
-
-        break;
-      case "equal":
-        console.log(checkLastColumn(array[0]));
-        break;
-    }
-  } else {
-    const columnValue = array[0];
-    if (checkLastColumn(columnValue) > 1) console.log(checkLastColumn(columnValue - 1));
-    if (checkLastColumn(columnValue) < 7) console.log(checkLastColumn(columnValue + 1));
-    console.log(checkLastColumn(columnValue + 7));
-  }
 }
