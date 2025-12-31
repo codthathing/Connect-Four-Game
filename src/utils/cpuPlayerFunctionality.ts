@@ -2,7 +2,7 @@ function checkLastColumn(no: number) {
   return no % 7 === 0 ? 7 : no % 7;
 }
 
-function getNextPossibleStep(innerArrayLength: number, arrays: number[][], type: "you" | "cpu") {
+function getNextPossibleStep(innerArrayLength: number, arrays: number[][]) {
   const possibleStepsArray: number[] = [];
 
   for (const array of arrays) {
@@ -23,7 +23,9 @@ function getNextPossibleStep(innerArrayLength: number, arrays: number[][], type:
                 break;
               }
             } else {
-              if (type === "you" && ((array[0] - array[1] === 8 && !(document.querySelector(`div[data-hole="${array[i] - 1}"]`) as HTMLDivElement).hasAttribute("data-played")) || (array[1] - array[0] === 6 && !(document.querySelector(`div[data-hole="${array[i] + 13}"]`) as HTMLDivElement).hasAttribute("data-played")))) {
+              if ((array[0] - array[1] === 8 && !(document.querySelector(`div[data-hole="${array[i] - 1}"]`) as HTMLDivElement).hasAttribute("data-played")) || (array[1] - array[0] === 6 && !(document.querySelector(`div[data-hole="${array[i] + 13}"]`) as HTMLDivElement).hasAttribute("data-played"))) {
+                break;
+              } else if (array[0] - array[1] === 1 && !((document.querySelector(`div[data-hole="${array[i] + 6}"]`) as HTMLDivElement) && (document.querySelector(`div[data-hole="${array[i] + 6}"]`) as HTMLDivElement).hasAttribute("data-played"))) {
                 break;
               } else {
                 possibleStepsArray.push(checkLastColumn(array[i]) - 1);
@@ -45,7 +47,9 @@ function getNextPossibleStep(innerArrayLength: number, arrays: number[][], type:
                 break;
               }
             } else {
-              if (type === "you" && ((array[0] - array[1] === 6 && !(document.querySelector(`div[data-hole="${array[i] + 1}"]`) as HTMLDivElement).hasAttribute("data-played")) || (array[1] - array[0] === 8 && !(document.querySelector(`div[data-hole="${array[i] + 15}"]`) as HTMLDivElement).hasAttribute("data-played")))) {
+              if ((array[0] - array[1] === 6 && !(document.querySelector(`div[data-hole="${array[i] + 1}"]`) as HTMLDivElement).hasAttribute("data-played")) || (array[1] - array[0] === 8 && !(document.querySelector(`div[data-hole="${array[i] + 15}"]`) as HTMLDivElement).hasAttribute("data-played"))) {
+                break;
+              } else if (array[1] - array[0] === 1 && !((document.querySelector(`div[data-hole="${array[i] + 8}"]`) as HTMLDivElement) && (document.querySelector(`div[data-hole="${array[i] + 8}"]`) as HTMLDivElement).hasAttribute("data-played"))) {
                 break;
               } else {
                 possibleStepsArray.push(checkLastColumn(array[i]) + 1);
@@ -105,30 +109,67 @@ export function determineCpuPlay(gameLevel: "easy" | "regular" | "hard", present
         }
       }
 
+      // function getLongestWinners(type: "you" | "cpu") {
+      //   const possibleStepsNumber = possibleNextStep.map((elements) => elements.map((div) => Number(div.getAttribute("data-hole"))));
+
+      //   const possibleWinners = possibleStepsNumber.filter((divs) => divs.some((div) => (document.querySelector(`div[data-hole="${div}"]`) as HTMLDivElement).getAttribute("data-type") === type));
+
+      //   const possibleLongestWinners = Math.max(...possibleWinners.map((array) => array.length));
+
+      //   return { longestArrays: possibleWinners.filter((array) => array.length === possibleLongestWinners), longestLength: possibleLongestWinners };
+      // }
+
+      // const { longestArrays: possibleCpuArrays, longestLength: longestCpuArray } = getLongestWinners("cpu");
+      // const { longestArrays: possibleYouArrays, longestLength: longestYouArray } = getLongestWinners("you");
+
+      // if (!possibleCpuArrays && !possibleYouArrays) return Math.floor(Math.random() * 7) + 1;
+
+      // const possibleCpuWinnerArray = getNextPossibleStep(longestCpuArray, possibleCpuArrays, "cpu");
+      // const possibleYouWinnerArray = getNextPossibleStep(longestYouArray, possibleYouArrays, "you");
+
+      // if (longestCpuArray === 3 || (possibleCpuArrays && longestYouArray !== 3)) return possibleCpuWinnerArray[Math.floor(Math.random() * possibleCpuWinnerArray.length)];
+
+      // if (Boolean(possibleYouWinnerArray.length !== 0)) return possibleYouWinnerArray[Math.floor(Math.random() * possibleYouWinnerArray.length)];
+
+      // return possibleCpuWinnerArray[Math.floor(Math.random() * possibleCpuWinnerArray.length)];
+
       function getLongestWinners(type: "you" | "cpu") {
         const possibleStepsNumber = possibleNextStep.map((elements) => elements.map((div) => Number(div.getAttribute("data-hole"))));
 
         const possibleWinners = possibleStepsNumber.filter((divs) => divs.some((div) => (document.querySelector(`div[data-hole="${div}"]`) as HTMLDivElement).getAttribute("data-type") === type));
 
-        const possibleLongestWinners = Math.max(...possibleWinners.map((array) => array.length));
+        let possibleLongestWinners = Math.max(...possibleWinners.map((array) => array.length));
 
-        return { longestArrays: possibleWinners.filter((array) => array.length === possibleLongestWinners), longestLength: possibleLongestWinners };
+        let possibleWinnerArrays: number[][] | number[];
+
+        if (type === "you") {
+          possibleWinnerArrays = possibleWinners.filter((array) => array.length === possibleLongestWinners);
+        } else {
+          possibleWinnerArrays = getNextPossibleStep(possibleLongestWinners, possibleWinners.filter((array) => array.length === possibleLongestWinners));
+
+          while (!Boolean(possibleWinnerArrays.length !== 0) && possibleLongestWinners > 0) {
+            possibleLongestWinners = possibleLongestWinners - 1;
+
+            possibleWinnerArrays = getNextPossibleStep(possibleLongestWinners, possibleWinners.filter((array) => array.length === possibleLongestWinners));
+          }
+        }
+
+        return { possibleWinnerArrays, possibleLongestWinners };
       }
 
-      const { longestArrays: possibleCpuArrays, longestLength: longestCpuArray } = getLongestWinners("cpu");
-      const { longestArrays: possibleYouArrays, longestLength: longestYouArray } = getLongestWinners("you");
+      const { possibleWinnerArrays: possibleCpuWinnersArrays, possibleLongestWinners: longestCpuWinnerArray } = getLongestWinners("cpu") as { possibleWinnerArrays: number[], possibleLongestWinners: number };
+      const { possibleWinnerArrays: possibleYouArrays, possibleLongestWinners: longestYouArray } = getLongestWinners("you") as { possibleWinnerArrays: number[][], possibleLongestWinners: number };
 
-      if (!possibleCpuArrays && !possibleYouArrays) return Math.floor(Math.random() * 7) + 1;
+      if (longestCpuWinnerArray === 3 || (possibleCpuWinnersArrays && longestYouArray !== 3)) return possibleCpuWinnersArrays[Math.floor(Math.random() * possibleCpuWinnersArrays.length)];
 
-      const possibleCpuWinnerArray = getNextPossibleStep(longestCpuArray, possibleCpuArrays, "cpu");
-      const possibleYouWinnerArray = getNextPossibleStep(longestYouArray, possibleYouArrays, "you");
-
-      if (longestCpuArray === 3 || (possibleCpuArrays && longestYouArray !== 3)) return possibleCpuWinnerArray[Math.floor(Math.random() * possibleCpuWinnerArray.length)];
+      const possibleYouWinnerArray = getNextPossibleStep(longestYouArray, possibleYouArrays);
 
       if (Boolean(possibleYouWinnerArray.length !== 0)) return possibleYouWinnerArray[Math.floor(Math.random() * possibleYouWinnerArray.length)];
 
-      return possibleCpuWinnerArray[Math.floor(Math.random() * possibleCpuWinnerArray.length)];
-    case "hard":
+      if (Boolean(possibleCpuWinnersArrays.length !== 0)) return possibleCpuWinnersArrays[Math.floor(Math.random() * possibleCpuWinnersArrays.length)];
+    
+      return Math.floor(Math.random() * 7) + 1;
+      case "hard":
       return 0;
   }
 }
